@@ -1,14 +1,14 @@
 export const sliderItems = [
     {
       id: 1,
-      img: "https://i.ibb.co/XsdmR2c/1.png",
+      img: "https://media.istockphoto.com/photos/an-unrecognizable-man-on-electrobike-cycling-outdoors-on-a-road-in-picture-id1125012915?k=20&m=1125012915&s=612x612&w=0&h=IxzIP9-TG78AQvT0x48RbYuBU-SdUREClhLdQRBu0sY=",
       title: "SUMMER COLLECTION",
       desc: "ENDING NEX WEEK ! GET FLAT 30% OFF FOR OUR NEW COLELCTION.",
       bg: "f5fafd",
     },
     {
       id: 2,
-      img: "https://i.ibb.co/DG69bQ4/2.png",
+      img: "https://www.gyro-phare.com/wp-content/uploads/2020/01/Trottinette-%C3%A9lectrique-dualtron-Storm.png",
       title: "WINTER SALE",
       desc: "ENDING NEX WEEK ! GET FLAT 30% OFF FOR OUR NEW COLELCTION.",
       bg: "fcf1ed",

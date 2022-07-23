@@ -1,42 +1,42 @@
 import React, {useState} from 'react'
-import './Slider.css';
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import styled from 'styled-components';
-import slide1 from '../assets/bic.jpeg';
+import slide1 from '../assets/img1.png';
 import { sliderItems } from '../data';
 
 const Slider = () => {
     
-    const [slider, setSlider] = useState(0);
+    const [slideIndex, setSlideIndex] = useState(0);
 
-    const handleClick = (direction) => {
-        if(direction === "left"){
-            setSlider(slider > 0 ? slider -1 : 2)
+    const slideChange = (direction) => {
+        if(direction === "left") {
+            setSlideIndex(slideIndex > 0 ? slideIndex -1 : 2)
+            console.log("clicked")
         } else {
-            setSlider(slider < 2 ? slider +1 : 0)
+            setSlideIndex(slideIndex < 2 ? slideIndex +1 : 0)
         }
     }
+
   return (
     <Wrapper>
     <div className="container">
-        <div className="arrow" direction="left" onClick={()=>handleClick("left")}>
+        <div direction="left" className="arrowleft" onClick={() => slideChange("left")}>
             <ArrowLeftOutlined/>
         </div> 
-        <div className="wrapper">
-            {slider.map((item) =>(
+        <div className="wrapper" slideIndex={slideIndex} >
+            {sliderItems.map((item) =>(
             <div className="slide" bg={item.bg} key={item.id}>
             <div className="imagecontainer">
-                <img className="image" src={slide1} />
+                <img className="image" src={item.img} />
             </div>
             <div className="informations">
                 <h1 className="title"> {item.title} </h1>
-                <p className="desctiption"> {item.desc} </p>
+                <p className="description"> {item.desc} </p>
                 <button className="homebutton"> SEE MORE</button>
             </div>
             </div>
-            ))};
-
-            <div className="arrow" direction="right" onClick={()=>handleClick("right")}>
+            ))}
+            <div  direction="right" className="arrowright" onClick={() => slideChange("right")}>
                 <ArrowRightOutlined/>
             </div> 
         </div>
@@ -54,7 +54,7 @@ const Wrapper = styled.div`
     height: 100vh;
     display: flex;
     overflow: hidden;
-    background-color: bisque;
+    background-color: white;
     position: relative;
 }
 
@@ -71,26 +71,6 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     background-color: #${(props) => props.bg};
-}
-
-.arrow{
-    width: 50px;
-    height: 50px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 1rem;
-    margin: auto;
-    cursor:pointer;
-    opacity: 0.5;
-    z-index: 2;
-    left: ${(props) => props.direction === "left" && "10px"};
-    right: ${(props) => props.direction === "right" && "-20rem"};
 }
 
 .imagecontainer{
@@ -112,6 +92,7 @@ const Wrapper = styled.div`
     font-size: 20px;
     background-color: transparent;
     cursor: pointer;
+    font-weight:bold;
 }
 
 .informations{
@@ -121,6 +102,7 @@ const Wrapper = styled.div`
 
 .title{
     font-size: 70px;
+    color: black;
 }
 
 .description{
@@ -128,7 +110,47 @@ const Wrapper = styled.div`
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 3px;
+    color: black;
 }
+
+.arrowleft{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1rem;
+    margin: auto;
+    cursor:pointer;
+    opacity: 0.5;
+    z-index: 2; 
+    color:black;   
+}
+
+.arrowright{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 95%;
+    margin: auto;
+    cursor:pointer;
+    opacity: 0.5;
+    z-index: 2;
+    color:black;
+}
+
 `
 
 export default Slider;
