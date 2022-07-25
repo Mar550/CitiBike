@@ -16,7 +16,7 @@ const Product = () => {
                     <img className='image' src=""/>
                 </div>
                 <div className='informations'>
-                    <h1 className='title'> Conversion Kit </h1>
+                    <h1 className='title'> E-bike Conversion Kit </h1>
                     <p className='description'>   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                     venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
                     iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget

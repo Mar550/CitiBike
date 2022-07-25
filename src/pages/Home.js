@@ -10,12 +10,12 @@ import ProductList from './ProductList';
 import Product from './Product';
 import Register from './Register';
 import Login from './Login';
-
+import Cart from './Cart';
 
 const Home = () => {
   return (
     <div> 
-        <Login/>
+        <Cart/>
     </div> 
     )
 }
