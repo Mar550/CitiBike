@@ -8,11 +8,14 @@ import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import ProductList from './ProductList';
 import Product from './Product';
+import Register from './Register';
+import Login from './Login';
+
 
 const Home = () => {
   return (
     <div> 
-        <Product/>
+        <Login/>
     </div> 
     )
 }
