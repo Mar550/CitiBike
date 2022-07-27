@@ -18,7 +18,7 @@ const CartSchema = new mongoose.Schema(
     adress:{type: Object, required: true},
     status: { type: String, default:"pending"}
     },
-    { timestamp: true }
+    { timestamps: true }
 );
 
 module.exports = mongoose.model("Order", OrderSchema);
