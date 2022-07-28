@@ -7,6 +7,7 @@ const authRoute = require("./routes/auth");
 
 dotenv.config();
 
+
 mongoose.connect("mongodb+srv://Citibike:Qwerty.12345@cluster0.a2fd9.mongodb.net/?retryWrites=true&w=majority")
         .then(() => console.log("Connected to DB !"))
         .catch((err) => {

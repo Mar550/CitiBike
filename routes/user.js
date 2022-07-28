@@ -1,9 +1,27 @@
+const User = require("../models/User");
+const {verifyToken, verifyTokenAndAut} = require("./verifyToken");
 const router = require("express").Router();
 
 
-router.post("/posttest", (req,res)=>{
-    const username = req.body.username;
-    res.send("The username is: " + username);
-}) 
+// Update user informations 
+router.put("/:id", verifyToken, async (req,res)=>{
+    if (req.body.password) {
+        req.body.password = CryptoJS.AES.encrypt(
+            req.body.password,
+            process.env.PASS_SECRET_KEY
+        ).toString();
+    }  
+    try{
+        const updatedUser =  await User.findByIdAndUpdate(req.params.id,{
+            $set: req.body,
+        },
+        {new:true}
+    )
+    res.status(200).json(updatedUser)      
+    }
+    catch(err) {
+    res.status(500).json(err)};
+})
+
 
 module.exports = router;
