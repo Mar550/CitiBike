@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ mongoose.connect("mongodb+srv://Citibike:Qwerty.12345@cluster0.a2fd9.mongodb.net
 
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 

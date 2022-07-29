@@ -17,13 +17,14 @@ const verifyToken = (req,res,next)=>{
 }
 
 const verifyTokenAndAut = (req,res,next)=>{
-    verifyToken(req,res,()=>{
+    verifyToken(req,res,() => {
         if(req.user.id === req.params.id || req.user.isAdmin){
             next()
         } else {
-            res.status(403).json("Access denied")
+            res.status(403).json("You are not allowed to do that")
         }
     })
 }
+
 
 module.exports = {verifyToken, verifyTokenAndAut};

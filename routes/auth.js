@@ -2,11 +2,11 @@ const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken"); 
+var mongoose = require('mongoose');
 
 // REGISTER route
 router.post("/register", async (req,res)=>{
     const user = new User({
-        _id: req.body._id,
         username: req.body.username,
         email: req.body.email,
         password: CryptoJS.AES
