@@ -31,7 +31,7 @@ router.put("/:id", verifyTokenAndAut, async (req, res) => {
   });
 
 
-// FIND route
+// FIND User route
 router.get("/find/:id", verifyTokenAndAdmin, async (req,res)=>{
   const checkedid = req.params.id;
   try{
@@ -42,4 +42,20 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req,res)=>{
     res.status(500).json(err);
   }
 })
+
+//FIND All Users route
+router.get("/all", verifyTokenAndAdmin, async (req, res) => {
+  const query = req.query.new;
+  try{
+    const users = query
+    ? await User.find().limit(5)
+    : await User.find();
+    res.status(200).json(users);
+  } catch(err){
+    res.status(500).json(err);
+  }
+})
+
+
 module.exports = router;
+
