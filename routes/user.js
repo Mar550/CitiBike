@@ -4,7 +4,7 @@ const router = require("express").Router();
 const CryptoJS = require("crypto-js");
 
 
-// UPDATE route
+// UPDATE User
 
 router.put("/:id", verifyTokenAndAut, async (req, res) => {
     const checkedid = req.params.id;
@@ -31,7 +31,19 @@ router.put("/:id", verifyTokenAndAut, async (req, res) => {
   });
 
 
-// FIND User route
+// DELETE User
+router.delete("/:id", verifyTokenAndAut, async (req, res) => {
+  const checkedid = req.params.id;
+  try {
+    await User.findByIdAndDelete(checkedid.trim());
+    res.status(200).json("User deleted !");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+// FIND User 
 router.get("/find/:id", verifyTokenAndAdmin, async (req,res)=>{
   const checkedid = req.params.id;
   try{
@@ -43,7 +55,7 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req,res)=>{
   }
 })
 
-//FIND All Users route
+//FIND All Users 
 router.get("/all", verifyTokenAndAdmin, async (req, res) => {
   const query = req.query.new;
   try{
@@ -56,6 +68,32 @@ router.get("/all", verifyTokenAndAdmin, async (req, res) => {
   }
 })
 
+// GET User Informations
+
+router.get('/info', verifyTokenAndAdmin, async (req, res)=> {
+  const date = new Date();
+  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
+
+  try {
+    const data = await User.aggregate([
+      { $match: { createdAt: {$gte: lastYear }}},
+      { 
+        $project:{
+          month: { $month:"$createdAt"},
+        },
+      },
+      {
+        $group:{
+          _id:"$month",
+          total: { $sum: 1 },
+        }
+      }
+    ]);
+    res.status(200).json(data);
+  } catch(err){
+    res.status(500).json(err);
+  }
+})
 
 module.exports = router;
 
