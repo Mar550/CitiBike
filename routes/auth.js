@@ -4,6 +4,7 @@ const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken"); 
 var mongoose = require('mongoose');
 
+
 // REGISTER route
 router.post("/register", async (req,res)=>{
     const user = new User({
