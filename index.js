@@ -6,9 +6,10 @@ const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
 const bodyParser = require('body-parser');
 const productRoute = require("./routes/product");
+const cartRoute = require("/routes/cart");
+const orderRoute = require("/routes/order");
 
 dotenv.config();
-
 
 mongoose.connect("mongodb+srv://Citibike:Qwerty.12345@cluster0.a2fd9.mongodb.net/?retryWrites=true&w=majority")
         .then(() => console.log("Connected to DB !"))

@@ -43,7 +43,7 @@ router/get("/find/:id", async(req, res) =>{
     }
 })
 
-///GET ALL Orders
+//GET ALL Orders
 
 router.get("/findall", verifyTokenAndAdmin, async(req,res) => {
     try {
@@ -53,6 +53,8 @@ router.get("/findall", verifyTokenAndAdmin, async(req,res) => {
         res.status(500).json(err);
     }
 })
+
+
 
 //DELETE Order
 router.delete("/:id", verifyTokenAndAut, async (req, res) => {
