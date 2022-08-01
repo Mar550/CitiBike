@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Cart = require("../models/Cart");
 
-const {verifyTokenAndAut, verifyTokenAndAdmin} = require("./verifyToken");
+const {verifyToken, verifyTokenAndAut, verifyTokenAndAdmin} = require("./verifyToken");
 
 
 //CREATE Cart
@@ -33,7 +33,7 @@ router.put("/:id", verifyToken, async(req, res) => {
 })
 
 //GET Cart
-router/get("/find/:id", async(req, res) =>{
+router.get("/find/:id", async(req, res) =>{
     try {
         const cart = await Cart.findById(req.params.id);
         res.status(200).json(cart); 
