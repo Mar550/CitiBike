@@ -13,10 +13,10 @@ const Announcement = () => {
 
 const Wrapper = styled.div `
 .announcement{
-  height: 30px;
-  background-color: azure;
-  color:#000000;
-  font-size: 0.9rem;
+  height: 2rem;
+  background-color: grey;
+  color:white;
+  font-size: 1rem;
   font-weight: bold;
   display: flex;
   flex-direction: row;

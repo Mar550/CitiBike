@@ -8,7 +8,6 @@ const Product = ({item}) => {
   return (
     <Wrapper>
         <div className="container">
-            <div className="circle"></div>
             <img className="image" src={item.img}/>
             <div className="informations"> 
                 <div className="icon">
@@ -30,9 +29,9 @@ const Wrapper = styled.div`
 
 .container{
     flex: 1;
-    margin: 5px;
-    min-width: 280px;
-    height: 350px;
+    margin: 10px;
+    width: 85%;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,13 +40,7 @@ const Wrapper = styled.div`
 
 }
 
-.circle{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: white;
-    position: absolute;
-}
+
 
 .icon{
     width: 40px;

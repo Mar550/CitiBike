@@ -1,76 +1,86 @@
 export const sliderItems = [
-    {
-      id: 1,
-      img: "https://media.istockphoto.com/photos/an-unrecognizable-man-on-electrobike-cycling-outdoors-on-a-road-in-picture-id1125012915?k=20&m=1125012915&s=612x612&w=0&h=IxzIP9-TG78AQvT0x48RbYuBU-SdUREClhLdQRBu0sY=",
-      title: "SUMMER COLLECTION",
-      desc: "ENDING NEX WEEK ! GET FLAT 30% OFF FOR OUR NEW COLELCTION.",
-      bg: "f5fafd",
-    },
-    {
-      id: 2,
-      img: "https://www.gyro-phare.com/wp-content/uploads/2020/01/Trottinette-%C3%A9lectrique-dualtron-Storm.png",
-      title: "WINTER SALE",
-      desc: "ENDING NEX WEEK ! GET FLAT 30% OFF FOR OUR NEW COLELCTION.",
-      bg: "fcf1ed",
-    },
-    {
-      id: 3,
-      img: "https://i.ibb.co/cXFnLLV/3.png",
-      title: "VALENTINE'S DAY SPECIALS",
-      desc: "ENDING NEX WEEK ! GET FLAT 30% OFF FOR OUR NEW COLELCTION.",
-      bg: "fbf0f4",
-    },
-  ];
+  {
+    id: 1,
+    img: "https://media.istockphoto.com/photos/an-unrecognizable-man-on-electrobike-cycling-outdoors-on-a-road-in-picture-id1125012915?k=20&m=1125012915&s=612x612&w=0&h=IxzIP9-TG78AQvT0x48RbYuBU-SdUREClhLdQRBu0sY=",
+    title: "CITY COLLECTION",
+    desc: "ENDING NEX WEEK ! GET FLAT 30% OFF FOR OUR NEW CITY COLELCTION.",
+    bg: "f5fafd",
+  },
+  {
+    id: 2,
+    img: "https://i.ibb.co/fd6GRjQ/Saracen-Ariel-30-Pro-12-c0c491f.jpg",
+    title: "TRAIL ACCESSORIES",
+    desc: "ENDING IN THREE DAYS ! GET FLAT 30% OFF FOR THE TRAIL ACCESSORIES.",
+    bg: "fcf1ed",
+  },
+  {
+    id: 3,
+    img: "https://i.ibb.co/g9265L3/Ultimate-Guide-2.jpg",
+    title: "NEW YEAR'S SALES",
+    desc: "DURING DWO WEEKS ! GET FLAT 30% OFF FOR OUR NEW COLELCTION.",
+    bg: "fbf0f4",
+  },
+];
 
-  export const categories = [
-    {
-      id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "SHIRT STYLE!",
-    },
-    {
-      id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "CASUALWEAR PIECES",
-    },
-    {
-      id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "SPRING JACKETS",
-    },
-  ];
+export const categories = [
+  {
+    id: 1,
+    img: "https://i.ibb.co/k1rd88m/road-cycling.png",
+    title: "CITY ROAD",
+  },
+  {
+    id: 2,
+    img: "https://i.ibb.co/0K53Rxj/trail-cycling.png",
+    title: "TRAIL CYCLING",
+  },
+  {
+    id: 3,
+    img: "https://i.ibb.co/s3m9X5W/Sans-titre.png",
+    title: "NIGHT RIDING",
+  },
+];
 
-  export const popularProducts = [
-    {
-      id:1,
-      img:"https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
-    },
-    {
-      id:2,
-      img:"https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
-    },
-    {
-      id:3,
-      img:"https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
-    },
-    {
-      id:4,
-      img:"https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
-    },
-    {
-      id:5,
-      img:"https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
-    },
-    {
-      id:6,
-      img:"https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
-    },
-    {
-      id:7,
-      img:"https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
-    },
-    {
-      id:8,
-      img:"https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
-    },
-  ]
+export const popularProducts = [
+  {
+    id:1,
+    img:"https://i.ibb.co/T29tVzd/p1-removebg-preview.png",
+  },
+  {
+    id:2,
+    img:"https://i.ibb.co/XtS2JWC/p2-removebg-preview.png",
+  },
+  {
+    id:3,
+    img:"https://i.ibb.co/LC7T8pR/p3-removebg-preview.png",
+  },
+  {
+    id:4,
+    img:"https://i.ibb.co/9sRg5Md/p4-removebg-preview.png",
+  },
+  {
+    id:5,
+    img:"https://i.ibb.co/LRHqfDg/p5-removebg-preview.png",
+  },
+  {
+    id:6,
+    img:"https://i.ibb.co/0DJfG09/p6-removebg-preview.png",
+  },
+  {
+    id:7,
+    img:"https://i.ibb.co/LPK9cdT/p7-removebg-preview.png",
+  },
+  {
+    id:8,
+    img:"https://i.ibb.co/CsgrQrK/p8-removebg-preview.png", 
+  },
+  {
+    id:9,
+    img:"https://i.ibb.co/7jPxMy6/p9-removebg-preview.png", 
+  }
+]
+
+
+
+// Names Products
+// 1-Ebike Headlight 2-Lockring Tool 3-E-bike Retrofit Kit 4-Continental Trail Ryle
+// 5- E-bike Display Intuvia 6-E-bike battery PowerPack 7-Chainring 8-E-bike mirroro 913 9-Clicher Tyre

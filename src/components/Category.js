@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 
 export const Category = ({item}) => {
@@ -23,13 +23,15 @@ const Wrapper = styled.div`
     margin: 3px;
     height: 70vh;
     position: relative;
-    background-color: white;
+    height:80%;
 }
+
 .image{
     width: 100%;
     height: 100%
     object-fit: cover; 
 }
+
 .informations{
     position: absolute;
     width: 100%;
@@ -56,3 +58,5 @@ const Wrapper = styled.div`
     font-weight:bold;
 }
 `
+
+export default Category;

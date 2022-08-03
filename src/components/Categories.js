@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { categories } from "../data";
 import { Category } from './Category';
 
+
 const Categories = (item) => {
   return (
     <Wrapper>
@@ -19,8 +20,7 @@ const Wrapper = styled.div`
 .container{
     display:flex;
     padding:20px;
-    justify-content:space-between;
-    background-color:white;
+    justify-content: space-between;
 }
 
 `
