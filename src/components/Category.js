@@ -1,15 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Category = ({item}) => {
   return (
     <Wrapper>
         <div className="container">
+            <Link to={`/products/${item.category}`}> 
             <img className="image" src={item.img} />
             <div className="informations">
             <h1 className="title"> {item.title} </h1>
             <button className="button"> SHOP NOW </button>
             </div>
+            </Link>
         </div>
     </Wrapper>
   )

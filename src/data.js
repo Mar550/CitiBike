@@ -27,16 +27,19 @@ export const categories = [
     id: 1,
     img: "https://i.ibb.co/k1rd88m/road-cycling.png",
     title: "CITY ROAD",
+    category: "city"
   },
   {
     id: 2,
     img: "https://i.ibb.co/0K53Rxj/trail-cycling.png",
     title: "TRAIL CYCLING",
+    category: "trail"
   },
   {
     id: 3,
     img: "https://i.ibb.co/s3m9X5W/Sans-titre.png",
     title: "NIGHT RIDING",
+    category: "night"
   },
 ];
 
