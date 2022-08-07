@@ -8,6 +8,7 @@ const Product = ({item}) => {
   return (
     <Wrapper>
         <div className="container">
+            <p className='title'> {item.title} </p>
             <img className="image" src={item.img}/>
             <div className="informations"> 
                 <div className="icon">

@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
+import axios from 'axios';
 import { popularProducts } from '../data';
 import Product from './Product';
 
-const Products = () => {
+
+const Products = ({cat, filters, sort}) => {
+  const [products, setProducts] = useState([]);
+
+  // Add header allow axios
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(
+          cat
+            ? `/products?category=${cat}`
+            : "/products/"
+        );
+        setProducts(res.data);
+      } catch (err) {}
+    };
+    getProducts();
+  }, [cat]);
+ 
   return (
     <Wrapper>
         <h1 className="title"> Our popular products </h1>
         <div className="container">
-        {popularProducts.map((item) => (
+        {products.map((item) => (
             <Product item={item} key={item.id} />
         ))};
         </div>
