@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from "styled-components";
 import { SearchOutlined } from '@material-ui/icons';
 import { ShoppingCartOutlined } from '@material-ui/icons';
 import { FavoriteBorderOutlined } from '@material-ui/icons';
 
+
 const Product = ({item}) => {
-  return (
+    
+    return (
     <Wrapper>
         <div className="container">
             <p className='title'> {item.title} </p>

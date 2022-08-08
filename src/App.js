@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Categories from "./components/Categories";
 import Category from "./components/Category";
 import Products from "./components/Products";
-import Product from "./components/Product";
+import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
 import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<Home/>} /> 
         <Route path="/products" element={<ProductList/>} /> 
         <Route path="/products/:category" element={<ProductList/>} /> 
-        <Route path="/products/:id" element={<ProductList/>} /> 
+        <Route path="/product/:id" element={<Product/>} />        
         <Route path="/cart" element={<Cart/>} /> 
         <Route path="/login" element={<Login/>}  /> 
         <Route path="/register" element={<Register/>} /> 

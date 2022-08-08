@@ -1,49 +1,82 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import { publicRequest, userRequest } from '../request';
 import styled from 'styled-components'
 import Navbar from '../components/Navbar'
 import Announcement from '../components/Announcement'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { Add, Remove } from "@material-ui/icons";
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const Product = () => {
-  return (
+
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+    const [product, setProduct] = useState({});
+    const [color,setColor] = useState("");
+    const [size,setSize] = useState("");
+    const [quantity,setQuantity] = useState(1);
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const res = await publicRequest.get("/products/find/" + id);
+                setProduct(res.data);
+                console.log(res)
+            } catch {}
+        };
+        getProduct();
+    }, [id]);
+    
+    const addQuantity = () => {
+        setQuantity(quantity + 1)
+    }
+
+    const removeQuantity = () => {
+        if (quantity > 2) {
+            setQuantity(quantity - 1)
+        } else {
+            setQuantity(1)
+        }
+    }
+    
+    return (
     <Wrapper>
-            <Navbar/>
+        <Navbar/>
             <Announcement/>
             <div className="wrap">
                 <div className="imagecontainer">
-                    <img className='image' src=""/>
+                    <img className='image' src={product.img}/>
                 </div>
                 <div className='informations'>
-                    <h1 className='title'> E-bike Conversion Kit </h1>
-                    <p className='description'>   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                    venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
-                    iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-                    tristique tortor pretium ut. Curabitur elit justo, consequat id
-                    condimentum ac, volutpat ornare. </p>
-                    <span className='price'> 20$ </span>
+                    <h1 className='title'> {product.title} </h1>
+                    <p className='description'> {product.desc} </p>
+                    <span className='price'> {product.price} € </span>
                     <div className='optionsContainer'>
                     <div className='options'>
-                            <span className='optionTitle'></span>
-                            <div color='black'>  </div>
-                            <div color='darkblue'>  </div>
-                            <div color='gray'>  </div>
+                            <span className='optionTitle'> Color </span>
+                            {product.color?.map((col)=>(
+                                <div className="divcolor"  style={{backgroundColor: col}} 
+                                color={col} key={col} onClick={()=>setColor(col)}>  </div>
+                            ))}
+                            
                     </div>
                     <div className='options'>
-                            <span className='optionTitle'> </span>
-                            <select className='size'> 
-                                <option className='sizeOption'> Small </option>
-                                <option className='sizeOption'> Medium </option>
-                                <option className='sizeOption'> Large </option>
+                            <span className='optionTitle'> Size </span>
+                            <select className='size' onChange={(e) => setSize(e.target.value)}> 
+                            {product.size?.map((si) => (
+                                <option className='sizeOption' key={si}>{si}</option>
+                            ))}
+
                             </select>
                     </div>
                     </div>
                     <div className="addProduct">
                         <div className="numberContainer"> 
-                            <Remove/> 
-                            <span className='number'> 1 </span>
-                            <Add/>
+                            <Remove onClick={removeQuantity} /> 
+                            <span className='number'> {quantity} </span>
+                            <Add onClick={addQuantity}/>
                         </div>
                         <button className='button'> ADD TO CART </button>
                     </div>
@@ -52,10 +85,18 @@ const Product = () => {
             <Newsletter/>
             <Footer/>
     </Wrapper>
-  )
+    )
 }
 
 const Wrapper = styled.div`
+
+.divcolor{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-left: 7px;
+    
+}
 
 .wrap{
     padding: 50px;
