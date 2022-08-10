@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 import { Add, Remove } from "@material-ui/icons";
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { addProduct } from '../redux/cartRedux';
+import { addProduct } from '../features/cartRedux';
 import { useDispatch } from 'react-redux';
 
 
@@ -47,7 +47,7 @@ const Product = () => {
 
     const addToCart = () =>{
         dispatch(
-            addProduct({...product, quantity, price:product.price*quantity, color, size})
+            addProduct({...product, quantity, price:product.price, color, size})
         )
     }
     
@@ -86,7 +86,7 @@ const Product = () => {
                         <div className="numberContainer"> 
                             <Remove className="badge" overlap="rectangular" onClick={removeQuantity} /> 
                             <span className='number'> {quantity} </span>
-                            <Add className="badge" overlap="rectangular" onClick={addQuantity}/>
+                            <Add className="badge" overlap="rectangular" onClick={addQuantity} />
                         </div>
                         <button className='button' onClick={addToCart}> ADD TO CART </button>
                     </div>

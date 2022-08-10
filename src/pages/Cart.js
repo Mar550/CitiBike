@@ -5,8 +5,11 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import image from '../assets/ebike.png'
 import { Add, Remove } from '@material-ui/icons'
+import { useSelector } from 'react-redux'
 
 const Cart = () => {
+    const cart = useSelector(state=> state.cart);
+
   return (
     <Wrapper>
         <div className='container'>
@@ -16,69 +19,51 @@ const Cart = () => {
                 <h1> YOUR SHOPPING CART </h1>
                 <div className='top'>
                     <div className='topTexts'> 
-                       <div className='topText'> Shopping Bag(2)</div>  
-                       <div className='topText'> Your Wishlist(0)</div>  
+                       <div className='topText'> Shopping Cart ({cart.products.length})</div>  
+                       <hr/>
+                       <div className='topText'> Your Favorites (0)</div>  
                     </div> 
                     <button className='topButton'> CONTINUE SHOPPING </button>
                 </div>
                 <div className='bottom'>
                     <div className='informations'>
+                        {cart.products.map(product =>(
                         <div className="product"> 
                             <div className='productDetails'> 
                                 <img src={image} className="image"/> 
                                 <div className='details'>
-                                    <span className='name'> Ebike - Conversion Kit </span>
-                                    <span className='id'> <b> ID </b> 7328572</span>  
-                                    <div id='color' color='grey'></div> 
-                                    <span className='size'> <b> Size: </b> Small </span> 
+                                    <span className='name'> {product.title} </span>
+                                    <span className='id'> <b> ID </b> {product.id}</span>  
+                                    <div id='color' color={product.color}></div> 
+                                    <span className='size'> <b> Size: </b> {product.size} </span> 
                                 </div>   
                             </div>
                             <div className='priceContainer'>
                                 <div className='amount'>
                                     <Add/>
-                                    <div className='number'> </div>
+                                    <div className='number'> {product.quantity}  </div>
                                     <Remove/>
                                 </div>
-                                <div className='price'> 50 $ </div> 
+                                <div className='price'> {product.price} € </div> 
                             </div>
-                        </div>
-                        <hr/>
-                        <div className="product"> 
-                            <div className='productDetails'> 
-                                <img src={image} className="image"/> 
-                                <div className='details'>
-                                    <span className='name'> Ebike - Conversion Kit </span>
-                                    <span className='id'> <b> ID </b> 7328572</span>  
-                                    <div id='color' color='grey'></div> 
-                                    <span className='size'> <b> Size: </b> Medium </span> 
-                                </div>   
-                            </div>
-                            <div className='priceContainer'>
-                                <div className='amount'>
-                                    <Add/>
-                                    <div className='number'> </div>
-                                    <Remove/>
-                                </div>
-                                <div className='price'> 50 $ </div> 
-                            </div>
-                        </div>
+                        </div>))}
                         <div className='summary'>
                                 <h1 className='summaryTitle'> ORDER SUMMARY </h1>
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> Total </span>
-                                <span className='summaryPrice'> 120 € </span>
+                                <span className='summaryPrice'> {cart.total} € </span>
                                 </div>
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> Standard Shipping </span>
                                 <span className='summaryPrice'> 9.95 € </span>
                                 </div>
                                 <div className='summaryItem'>  
-                                <span className='summaryText' type='total'> Discount 10% </span>
-                                <span className='summaryPrice'> -12.99 € </span>
+                                <span className='summaryText' type='total'> - Discount 10% </span>
+                                <span className='summaryPrice'> {cart.total*0.1} € </span>
                                 </div>
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> Total </span>
-                                <span className='summaryPrice'> 116.95 € </span>
+                                <span className='summaryPrice'> {(cart.total) - (cart.total*0.1) + 9.95} € </span>
                                 </div>                                
                                 <button className='checkout'> CHECKOUT NOW </button> 
                         </div>
