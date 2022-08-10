@@ -1,15 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
+import avatar from "../assets/avatar.png";
 
 const Login = () => {
   return (
     <Wrapper> 
     <div className="container">
         <div className="wrap">
+        <img className="image" src={avatar}/>
         <h1 className='title'> Sign In  </h1>
         <form className='form'>
-            <input placeholder='Email'/>
-            <input placeholder='Password'/>
+                <input placeholder='Enter your username ...'/>
+                <input placeholder='Enter your password ...'/>
             <button className='button'> LOGIN </button>
         </form>
         </div>
@@ -45,7 +47,8 @@ const Wrapper = styled.div`
 .title{
     font-size: 35px;
     font-weight: bold; 
-    text-align:center;       
+    text-align:center;  
+    margin-top: 1rem;     
 }
 
 .form{
@@ -74,7 +77,7 @@ input{
     height: 70%;
     border: none;
     padding: 15px 20px;
-    background-color: teal;
+    background-color: #13aec0;
     color: white;
     cursor: pointer;
     font-weight:bold;
@@ -91,6 +94,18 @@ input{
 .submit{
     display:flex;
     margin-top: 15px;
+}
+
+.image{
+    width: 40%;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input{
+    font-weight: bold;
+    font-size: 90%;
 }
 `
 

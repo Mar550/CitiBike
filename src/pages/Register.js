@@ -1,20 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 const Register = () => {
   return (
     <Wrapper> 
     <div className="container">
         <div className="wrap">
-        <h1 className='title'> Create an account </h1>
+        <div className = "divtitle">
+        <AssignmentIcon className="icon"/>
+        <h1 className='title'> Register </h1>
+        </div>
         <form className='form'>
-            <input placeholder='First name'/>
-            <input placeholder='Lastname'/>
-            <input placeholder='Email'/>
-            <input placeholder='Password'/>
-            <input placeholder='Confirm password'/>
+            <div>
+            <input className="input" placeholder='First name'/>
+            <input className="input" placeholder='Lastname'/>
+            </div>
+            <input className="input" placeholder='Username'/>
+            <input className="input" placeholder='Email'/>
+            <input className="input" placeholder='Password'/>
+            <input className="input" placeholder= 'Confirm your password' />
+            <div className='legal'> 
+            
+            <p> <input id="check" type="checkbox"/> By creating an account, i agree to the <b> terms & services </b> </p>
+            </div>
             <div className='submit'>
-            <div className='agreement'> By creating an account, i agree to the <b> terms & services </b> </div>
             <button className='button'> CREATE </button>
             </div>
         </form>
@@ -27,7 +37,7 @@ const Register = () => {
 const Wrapper = styled.div`
 
 .container{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: linear-gradient(
         rgba(255, 255, 255, 0.5),
@@ -42,41 +52,57 @@ const Wrapper = styled.div`
 }
 
 .wrap{
-    width: 40%;
-    padding: 20px;
+    width: 38%;
+    padding: 30px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .title{
-    font-size: 24px;
+    font-size: 3rem;
     font-weight: bold; 
-    text-align:center;       
+}
+
+.icon{
+    font-size: 3rem;
+    margin-top: 5px;
+}
+
+.divtitle{
+    display:flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
 .form{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction:column;
+    margin-top: 2rem;
+    gap: 5px;
 }
 
-input{
+.input{
     flex: 1;
     min-width: 40%;
-    margin: 20px 10px 0px 0px;
+    margin: 10px 10px 0px 0px;
     padding: 10px;
 }
 
-.agreement{
-    font-size: 12px;
-    margin: 20px 0px;
+#check{
+    width:auto;
+}
+
+.legal{
+    font-size: 13px;
+    margin-top: 2rem;
 }
 
 .button{
-    width: 40%;
+    width: 100%;
     height: 70%;
     border: none;
     padding: 15px 20px;
-    background-color: teal;
+    background-color: #13aec0;
     color: white;
     cursor: pointer;
     font-weight:bold;
