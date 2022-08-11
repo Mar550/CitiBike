@@ -1,8 +1,35 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import { Link, useNavigate } from 'react-router-dom';
+import { publicRequest } from '../request';
+
+
 
 const Register = () => {
+    
+    const [data, setData] = useState({
+        username:"",
+        email:"",
+        password:""
+    })
+    const [user, setUser] = useState({});
+
+    const handleChange = ({ currentTarget: input }) => {
+        setData({ ...data, [input.name]:input.value })
+    }
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async () => {
+        try {
+            const res = await publicRequest.post("/auth/register/",data);
+            console.log(user);
+        } catch(error) {}
+    };
+  
+
+
   return (
     <Wrapper> 
     <div className="container">
@@ -11,21 +38,33 @@ const Register = () => {
         <AssignmentIcon className="icon"/>
         <h1 className='title'> Register </h1>
         </div>
-        <form className='form'>
-            <div>
-            <input className="input" placeholder='First name'/>
-            <input className="input" placeholder='Lastname'/>
-            </div>
-            <input className="input" placeholder='Username'/>
-            <input className="input" placeholder='Email'/>
-            <input className="input" placeholder='Password'/>
-            <input className="input" placeholder= 'Confirm your password' />
+        <form className='form' onSubmit={handleSubmit} >
+            <input 
+            type="text"
+            className="input" 
+            placeholder='Username' 
+            value={data.username}
+            onChange={handleChange}
+            name="username"/>
+            <input 
+            type="email"
+            className="input" 
+            placeholder='Email'
+            value={data.email} 
+            onChange={handleChange}
+            name="email" />
+            <input 
+            type="pasword"
+            className="input" 
+            placeholder='Password' 
+            value={data.password} 
+            onChange={handleChange}
+            name="password"/>
             <div className='legal'> 
-            
             <p> <input id="check" type="checkbox"/> By creating an account, i agree to the <b> terms & services </b> </p>
             </div>
             <div className='submit'>
-            <button className='button'> CREATE </button>
+            <button type="submit" className='button'> CREATE </button>
             </div>
         </form>
         </div>

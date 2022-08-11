@@ -1,24 +1,57 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import avatar from "../assets/avatar.png";
+import { Link } from 'react-router-dom';
+import { publicRequest } from '../request';
+
 
 const Login = () => {
+
+    const [data, setData] = useState({
+        username:"",
+        password:"",
+    })
+    const [error, setError] = useState("");
+
+    const handleChange = ({ currentTarget: input }) => {
+        setData({ ...data, [input.name]:input.value })
+    }
+
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        try{
+            const res = await publicRequest.post("/auth/login/",data);
+            localStorage.setItem("token", res.data);
+            window.location = "/"
+            console.log(res.message)
+        } catch(error) {
+            if (
+                error.response &&
+                error.response.status >= 400 &&
+                error.response.status <= 500
+            ) {
+                setError(error.response.data.message);
+            }
+        }
+    }
+
   return (
     <Wrapper> 
     <div className="container">
         <div className="wrap">
         <img className="image" src={avatar}/>
-        <h1 className='title'> Sign In  </h1>
+        <h1 className='title'> LOGIN </h1>
         <form className='form'>
-                <input placeholder='Enter your username ...'/>
-                <input placeholder='Enter your password ...'/>
-            <button className='button'> LOGIN </button>
+                <input type="text" name="username" placeholder='Enter your username ...' onChange = {handleChange}/>
+                <input type="password" name="password" placeholder='Enter your password ...' onChange={handleChange}/>
+            <button className='button' onClick={handleSubmit}> LOGIN </button>
         </form>
         </div>
     </div>
     </Wrapper>
   )
 }
+
 
 const Wrapper = styled.div`
 
