@@ -35,20 +35,26 @@ const Wrapper = styled.div`
     object-fit: cover; 
 }
 
+.image:hover {
+    opacity: 0.7;
+}
+
 .informations{
     position: absolute;
     width: 100%;
-    height: 100%;
-    top:0;
+    height: 20%;
+    top:50%;
     left:0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
+
 }
 .title{
     color:white;
+    font-weight:bold;
     margin-bottom: 20px;
 }
 
@@ -56,7 +62,7 @@ const Wrapper = styled.div`
     border:none;
     padding: 10px;
     background-color: white;
-    color: gray;
+    color: black;
     cursor:pointer;
     font-weight:bold;
 }

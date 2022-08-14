@@ -71,9 +71,12 @@ const Wrapper = styled.div`
     padding: 20px; 
     width: 21rem;
     gap: 4rem;
+    margin-top:1rem;
+    margin-bottom: 1rem;
 }
 
 .title{
+  margin-top:2rem;
   text-align:center;
   font-weight: bold;
   font-size: 2.5rem;

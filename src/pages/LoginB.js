@@ -1,78 +1,25 @@
-import React,{useState} from 'react'
-import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
-import { publicRequest } from '../request';
+import React from "react";
+import styled from "styled-components";
 import {BsFacebook} from 'react-icons/bs';
 import {AiFillTwitterCircle} from 'react-icons/ai';
 import {BsGithub} from 'react-icons/bs';
 import {FaGooglePlus} from 'react-icons/fa';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
-const Register = () => {
-
-  const [data, setData] = useState({
-    username:"",
-    email:"",
-    password:"",
-  })
-
-  const [user, setUser] = useState({});
-
-  const handleChange = ({ currentTarget: input }) => {
-      setData({ ...data, [input.name]:input.value })
-  }
-
-  const navigate = useNavigate();
-
-  const handleSubmit = async () => {
-      try {
-          const res = await publicRequest.post("/auth/register/",data);
-          console.log(user);
-      } catch(error) {}
-  };
-
-
-  return (
-    <Wrapper>      
-      <div className="container">
-      <Navbar/>
-      <div className="login-container">
-        <img id="image" src={require('../assets/access.svg').default} alt='mySvgImage' />
+const LoginB = () => {
+    return (
+      <Wrapper>
+        <div className="login-container">
           <div className="login-info-container">
-            <h1 className="title"> SIGN UP  </h1>
-            <form className="inputs-container" onSubmit={handleSubmit} >
-                <input 
-                className="input" 
-                type="text" 
-                placeholder="E-mail"
-                value={data.email} 
-                onChange={handleChange}
-                name="email" />
-                <input 
-                className="input" 
-                type="text" 
-                placeholder="Username"  
-                value={data.username}
-                onChange={handleChange}
-                name="username"/>
-                <input 
-                className="input" 
-                type="password" 
-                placeholder="Password"
-                value={data.password} 
-                onChange={handleChange}
-                name="password"/>
-                <input 
-                className="input" 
-                type="password" 
-                placeholder="Confirm password"/>
-
-                <button className="btn" type="submit"> Create An Account </button>
-                <p> Already registered ? <Link to="/login"><span className="span"> Sign In here </span> </Link></p>
+            <h1 className="title"> SIGN IN</h1>
+            <form className="inputs-container">
+                <input className="input" type="text" placeholder="Username"/>
+                <input className="input" type="text" placeholder="Password"/>
+                <p>Forgot your password? <span className="span"> Click here </span></p>
+                <button className="btn">login</button>
+                <p>Still no registered ? <span className="span"> Create an account </span></p>      
             </form>
             <div className="subcontainer">
-                <p> or you can use </p>
+                <p> or  </p>
                 <div className="icones">
                   <BsFacebook/>
                   <AiFillTwitterCircle/>
@@ -81,46 +28,44 @@ const Register = () => {
                 </div>
           </div>
           </div>
+          <img src={require('../assets/login.svg').default} alt='mySvgImage' />
         </div>
-      </div>
-      <Footer/>
-    </Wrapper>
-  )
+      </Wrapper>
+    )
 }
 
 const Wrapper = styled.div`
 
 
-
 .icones{
-  margin-top: 1rem;
   display:flex;
-  gap: 1rem;
-  font-size: 2.5rem;
-  cursor:pointer;
+  gap: 10px;
+  font-size: 2rem;
+  margin-top: 10px;
 }
 
 .login-container {
-  height: 50em;
-  width: 80em;
+  margin-top: 4rem;
+  margin-left: 8rem; 
+  height: 30em;
+  width: 65em;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  gap: 3rem;
-
+  gap: 4rem;
+  displ
 }
 
 .login-info-container {
-  width: 45%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: #E8E8E8;
+  padding-top: 0.5rem;
+  background-color: #f8f3ff;
   gap: 20px;
-  margin-top: 3rem;
-  height: 40rem;
 }
 
 .image-container {
@@ -131,7 +76,7 @@ const Wrapper = styled.div`
 }
 
 .title {
-  margin-top: 3rem;
+  margin-top: 1rem;
   text-transform: capitalize;
   font-size: 2.4rem;
   font-weight: 900;
@@ -160,17 +105,11 @@ const Wrapper = styled.div`
 }
 
 .social-login-element img {
-  width: 80%;
+  width: 1.875rem;
   height: 1.875rem;
   position: relative;
   top: 0;
   left: -0.625rem;
-}
-
-#image{
-  width: 45%;
-  margin-left: 4rem;
-  margin-top: -3rem;
 }
 
 .social-login-element:hover {
@@ -188,18 +127,12 @@ const Wrapper = styled.div`
   width: 85%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
-.input {
-  width: 90%;
-  height: 3.125rem;
-  font-size: 1em;
-}
-
-.btn{
-  margin-top: 20px;
+.input, .btn {
   width: 90%;
   height: 3.125rem;
   font-size: 1em;
@@ -209,7 +142,7 @@ const Wrapper = styled.div`
   padding-left: 20px;
   border: none;
   border-radius: 5px;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 1px;
   box-sizing: border-box;
 }
@@ -276,6 +209,9 @@ const Wrapper = styled.div`
   }
 }
 
+
+
+
 `
 
-export default Register;
+export default LoginB;

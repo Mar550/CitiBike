@@ -33,7 +33,7 @@ function Footer() {
                 </div>
             </div> 
             <div className="center">
-                <h3 className="title"> Sections </h3>
+                <h3 className="titleb"> Sections </h3>
                 <ul className="list">
                     <li className="listItem"> Home </li>
                     <li className="listItem"> Cart </li>
@@ -47,7 +47,7 @@ function Footer() {
                 </ul>
             </div>  
             <div className="right">
-                <h3 className="title"> Contact </h3>
+                <h3 className="titleb"> Contact </h3>
                 <div className="contact"> +4456585545 </div>
                 <div className="contact"> info@citibike.com </div>
                 <div className="contact"> 41 Shelton Street Covent Garden, London </div>
@@ -107,7 +107,7 @@ const Wrapper = styled.div`
     padding: 20px;
 }
 
-.title{
+.titleb{
     margin-bottom: 30px;
     color:white;
 }

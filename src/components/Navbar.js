@@ -17,20 +17,22 @@ const Navbar = () => {
             <div className="left"> 
                 <span className="language"> EN </span>
                 <div className="searchContainer">
-                    <input className="input-search" placeholder="Search" /> 
-                    <Search className="icon-search" style={{ color:"gray", fontSize:16 }} />
+                    <Search className="icon-search"  />
+                    <input type="text" className="input-search" placeholder="Search product ..." /> 
                 </div>
             </div>       
             <div className="center"> 
                 <h1 className="logo"> Citibike </h1>
              </div>
             <div className="right"> 
-                <div className="item"> REGISTER </div>
-                <div className="item"> SIGN IN </div>
+                <div className="auth">
+                    <div className="item"> SIGN IN </div>
+                    <div className="item"> REGISTER </div>
+                </div>
                 <Link to="/cart">
-                <div className="item">
+                <div className="itemb">
                     <Badge  overlap="rectangular" badgeContent={quantity} color="primary">
-                        <ShoppingCartOutlined />
+                        <ShoppingCartOutlined className="icon-cart"/>
                     </Badge>
                 </div>
                 </Link>
@@ -74,7 +76,8 @@ const Wrapper = styled.div`
     
     .language{
         color: white;
-        font-size: 14px;
+        font-size: 1rem;
+        font-weight:bold;
         cursor:pointer;
         flex: 1;
     }
@@ -82,15 +85,20 @@ const Wrapper = styled.div`
     .searchContainer{
         color: white;
         flex: 1;
-        border: 1px solid lightgray;
         display: flex;
         align-items: center;
         margin-left: 25px;
         padding: 5px;
     }
     
+    .icon-cart{
+
+    }
+
     .input-search{
-        border: none;
+       border-radius: 5px;
+        height: 20px;
+        width: 12rem;
     }
     
     .logo{
@@ -101,8 +109,26 @@ const Wrapper = styled.div`
         font-size: 14px;
         cursor: pointer;
         margin-left: 25px;
+        font-weight:bold;
+        cursor: pointer;
+        border: 2px solid white;
+        padding: 0.5rem;
+        border-radius: 15px;
     }
     
+    .auth{
+        margin-right: 2rem;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .icon-search{
+        font-size: 1.8rem;
+    }
+
+    .icon-cart{
+        color:white;
+    }
     
 `
 export default Navbar;

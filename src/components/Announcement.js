@@ -14,8 +14,8 @@ const Announcement = () => {
 const Wrapper = styled.div `
 .announcement{
   height: 2rem;
-  background-color: grey;
-  color:white;
+  background-color: white;
+  color:black;
   font-size: 1rem;
   font-weight: bold;
   display: flex;

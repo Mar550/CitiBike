@@ -20,7 +20,7 @@ const Newsletter = () => {
 const Wrapper = styled.div`
 .container{
     height: 60vh;
-    background-color: #fcf5f5;
+    background-color: #E8E8E8;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,7 +58,9 @@ const Wrapper = styled.div`
     border: none;
     background-color: teal;
     color: white;
+
 }
+
 `
 
 export default Newsletter

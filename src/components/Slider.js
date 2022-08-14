@@ -1,117 +1,213 @@
-import { useState } from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import { sliderItems } from "../data";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-`;
-
-const Arrow = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: #fff7f7;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: ${(props) => props.direction === "left" && "10px"};
-  right: ${(props) => props.direction === "right" && "10px"};
-  margin: auto;
-  cursor: pointer;
-  opacity: 0.5;
-  z-index: 2;
-`;
-
-const Wrapper = styled.div`
-  height: 100%;
-  display: flex;
-  transition: all 1.5s ease;
-  margin-top: 1.5rem;
-`;
-
-const Slide = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-`;
-
-const ImageContainer = styled.div`
-  height: 100%;
-  flex: 1;
-`;
-
-const Img = styled.img`
-  height: 80%;
-  margin-left: 0.5rem;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;`;
-
-const Informations = styled.div`
-  flex: 1;
-  padding: 50px;
-`;
-
-const Title = styled.h1`
-  font-size: 70px;
-`;
-
-const Description = styled.p`
-  margin: 50px 0px;
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: 3px;
-`;
-
-const Button = styled.button`
-  padding: 10px;
-  font-size: 20px;
-  background-color: transparent;
-  cursor: pointer;
-`;
 
 const Slider = () => {
-  const [slideIndex, setSlideIndex] = useState(0);
-  const handleClick = (direction) => {
-    if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
-    } else {
-      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
-    }
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideLength = sliderItems.length;
+
+  const autoScroll = true;
+  let slideInterval;
+  let intervalTime = 5000;
+
+  const nextSlide = () => {
+    setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
+    console.log("next");
   };
 
+  const prevSlide = () => {
+    setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
+    console.log("prev");
+  };
+
+  function auto() {
+    slideInterval = setInterval(nextSlide, intervalTime);
+  }
+
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, []);
+
+  useEffect(() => {
+    if (autoScroll) {
+      auto();
+    }
+    return () => clearInterval(slideInterval);
+  }, [currentSlide]);
+
   return (
-    <Container>
-      <Arrow direction="left" onClick={() => handleClick("left")}>
-        <ArrowLeftOutlined />
-      </Arrow>
-      <Wrapper slideIndex={slideIndex}>
-        {sliderItems.map((item) => (
-          <Slide bg={item.bg} key={item.id}>
-            <ImageContainer>
-              <Img src={item.img} />
-            </ImageContainer>
-            <Informations>
-              <Title>{item.title}</Title>
-              <Description>{item.desc}</Description>
-              <Button>SEE NOW</Button>
-            </Informations>
-          </Slide>
-        ))}
-      </Wrapper>
-      <Arrow direction="right" onClick={() => handleClick("right")}>
-        <ArrowRightOutlined />
-      </Arrow>
-    </Container>
+    <Wrapper>
+    <div className="slider">
+      <ArrowLeftOutlined className="arrow prev" onClick={prevSlide} />
+      <ArrowRightOutlined className="arrow next" onClick={nextSlide} />
+      {sliderItems.map((slide, index) => {
+        return (
+          <div
+            className={index === currentSlide ? "slide current" : "slide"}
+            key={index}
+          >
+            {index === currentSlide && (
+              <div className="row">
+                <img src={slide.img} alt="slide" className="image" />
+                <div className="content">
+                  <h1>{slide.title}</h1>
+                  <p>{slide.desc}</p>
+                  <hr />
+                  <button id="btn" className="--btn --btn-primary"> SEE NOW </button>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+    <hr className="separator" />
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div `
+
+.separator{
+  margin-top: 1rem;
+  color: grey;
+  display: block;
+  margin-left: 13%;
+  width: 70%
+}
+
+.row{
+  display:flex;
+  flex-direction: row;
+}
+
+#btn{
+  background: white;
+  color: black;
+  width: 6rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#btn :hover{
+
+}
+
+.slider {
+  width: 100%;
+  height: 90vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: all 0.5s ease;
+}
+
+@media screen and (min-width: 600px) {
+  .slide img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.slide img {
+  width: 50%;
+  padding: 5rem;
+  opacity: 0.9;
+}
+
+.current {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.content {
+  width: 25rem;
+  color: black;
+  margin-top: 5rem;
+  height: 22rem;
+  padding: 3rem;
+  margin-right: 7rem;
+  font-weight:bold;
+  margin-left: -10px;
+}
+
+@keyframes slide-up {
+  0% {
+    visibility: visible;
+    top: 23rem;
+  }
+  100% {
+    visibility: visible;
+    top: 17rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .content {
+    width: 80%;
+  }
+}
+
+.content > * {
+  color: black;
+  margin-bottom: 1rem;
+  font-weight:bold;
+
+}
+
+.current .content {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.5s ease;
+}
+
+.arrow {
+  margin-top: 2rem;
+  border: 2px solid black;
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 999;
+}
+
+.arrow:hover {
+  background-color: black;
+  color: white;
+}
+
+.next {
+  top: 35%;
+  right: 1.5rem;
+}
+.prev {
+  top: 35%;
+  left: 1.5rem;
+}
+
+hr {
+  height: 2px;
+  background: white;
+  width: 50%;
+}
+
+`
 
 export default Slider;
