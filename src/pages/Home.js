@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Navbar from '../components/Navbar';
 import Announcement from '../components/Announcement';
 import Slider from '../components/Slider';
@@ -10,7 +10,6 @@ import Footer from '../components/Footer';
 import ProductList from './ProductList';
 import Product from './Product';
 import Register from './Register';
-import Login from './Login';
 import Cart from './Cart';
 
 const Home = () => {

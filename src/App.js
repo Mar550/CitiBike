@@ -9,7 +9,6 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from './pages/Register';
 import './index.css';
-import LoginB from './pages/LoginB';
 
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
         <Route path="/cart" element={<Cart/>} /> 
         <Route path="/login" element={<Login/>}  /> 
         <Route path="/register" element={<Register/>} /> 
-        <Route path="/loginb" element={<LoginB/>} /> 
 
       </Routes>
     </Router>

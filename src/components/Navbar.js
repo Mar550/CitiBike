@@ -1,15 +1,18 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Login from '../pages/Login';
 
 const Navbar = () => {
 
+    const [buttonPopup, setButtonPopup] = useState(false);
+
     const quantity = useSelector(state=>state.cart.quantity)
     console.log(quantity);
-    
+
     return (
         <Wrapper>
         <div className="container" >
@@ -26,7 +29,7 @@ const Navbar = () => {
              </div>
             <div className="right"> 
                 <div className="auth">
-                    <div className="item"> SIGN IN </div>
+                    <div className="item" onClick={() => setButtonPopup(true)}> SIGN IN </div>
                     <div className="item"> REGISTER </div>
                 </div>
                 <Link to="/cart">
@@ -39,6 +42,7 @@ const Navbar = () => {
              </div>
             </div>
         </div>
+        <Login trigger={buttonPopup} setTrigger={setButtonPopup}/>
         </Wrapper>
     )
 }
