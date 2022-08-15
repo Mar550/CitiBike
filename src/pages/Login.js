@@ -1,46 +1,29 @@
 import React,{useState} from "react";
 import styled from "styled-components";
-import {BsFacebook} from 'react-icons/bs';
-import {AiFillTwitterCircle} from 'react-icons/ai';
-import {BsGithub} from 'react-icons/bs';
-import {FaGooglePlus} from 'react-icons/fa';
-import {FaWindowClose} from 'react-icons/fa';
+import axios from "axios";
+import { BsFacebook } from 'react-icons/bs';
+import { AiFillTwitterCircle } from 'react-icons/ai';
+import { BsGithub } from 'react-icons/bs';
+import { FaGooglePlus } from 'react-icons/fa';
+import { FaWindowClose } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { publicRequest } from '../request';
+import { login } from "../features/serverCalls";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const Login = (props) => {
 
   const [trigger, setTrigger] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
 
-  const [data, setData] = useState({
-    username:"",
-    password:"",
-  })
-
-  const [error, setError] = useState("");
-
-  const handleChange = ({ currentTarget: input }) => {
-      setData({ ...data, [input.name]:input.value })
-  }
-
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-    try{
-        const res = await publicRequest.post("/auth/login/",data);
-        localStorage.setItem("token", res.data);
-        window.location = "/"
-        console.log(res.message)
-    } catch(error) {
-        if (
-            error.response &&
-            error.response.status >= 400 &&
-            error.response.status <= 500
-        ) {
-            setError(error.response.data.message);
-        }
-    }
-  }
+const handleSubmit = (e) => {
+  e.preventDefault();
+  login(dispatch, { username, password });
+};
 
     return (props.trigger) ? ( 
       <Wrapper>
@@ -49,20 +32,19 @@ const Login = (props) => {
             <FaWindowClose className="close-icon" onClick={() => props.setTrigger(false)}/>
             <h1 className="title"> SIGN IN</h1>
             <img id="image" src={require('../assets/login2.svg').default} alt='mySvgImage' />
-            <form className="inputs-container" onSubmit={handleSubmit}>
+            <form className="inputs-container">
                 <input 
                 className="input" 
                 type="text" 
                 placeholder="Username" 
-                name="username" 
-                onChange = {handleChange}/>
+                onChange={(e) => setUsername(e.target.value)}/>
                 <input 
                 className="input" 
                 type="password" 
                 placeholder="Password" 
-                name="username" 
-                onChange = {handleChange}/>
-                <button className="btn" type="submit"> Login</button>
+                onChange={(e) => setPassword(e.target.value)}/>
+                <button className="btn" onClick={handleSubmit} disabled={isFetching}> Login</button>
+                {error && <p>Something went wrong...</p>}
                 <p>Still not registered ? <Link to="/register"><span className="span"> Create an account </span> </Link></p>      
             </form>
             <div className="subcontainer">
@@ -110,6 +92,7 @@ const Wrapper = styled.div`
   right: 0px;
   cursor: pointer;
 }
+
 .login-info-container {
   position: relative;
   width: 30%;

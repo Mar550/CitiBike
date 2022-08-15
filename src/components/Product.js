@@ -3,14 +3,18 @@ import styled from "styled-components";
 import { SearchOutlined } from '@material-ui/icons';
 import { ShoppingCartOutlined } from '@material-ui/icons';
 import { FavoriteBorderOutlined } from '@material-ui/icons';
+import img2 from '../assets/img2.png'
 
 
 const Product = ({item}) => {
     
+
+
     return (
     <Wrapper>
         <div className="container">
             <p className='title'> {item.title} </p>
+
             <img className="image" src={item.img}/>
             <div className="informations"> 
                 <div className="icon">

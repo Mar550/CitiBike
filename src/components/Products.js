@@ -19,6 +19,7 @@ const Products = ({cat, filters, sort}) => {
             : "/products/"
         );
         setProducts(res.data);
+        console.log(res);
       } catch (err) {}
     };
     getProducts();

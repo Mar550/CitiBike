@@ -30,7 +30,7 @@ const Navbar = () => {
             <div className="right"> 
                 <div className="auth">
                     <div className="item" onClick={() => setButtonPopup(true)}> SIGN IN </div>
-                    <div className="item"> REGISTER </div>
+                    <Link to="/register"> <div className="item"> REGISTER </div> </Link>
                 </div>
                 <Link to="/cart">
                 <div className="itemb">

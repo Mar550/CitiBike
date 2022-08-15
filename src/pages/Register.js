@@ -28,7 +28,9 @@ const Register = () => {
   const handleSubmit = async () => {
       try {
           const res = await publicRequest.post("/auth/register/",data);
-          console.log(user);
+            console.log(res);
+            console.log("ok");
+            window.location = "/"
       } catch(error) {}
   };
 
@@ -63,11 +65,7 @@ const Register = () => {
                 value={data.password} 
                 onChange={handleChange}
                 name="password"/>
-                <input 
-                className="input" 
-                type="password" 
-                placeholder="Confirm password"/>
-
+              
                 <button className="btn" type="submit"> Create An Account </button>
                 <p> Already registered ? <Link to="/login"><span className="span"> Sign In here </span> </Link></p>
             </form>
