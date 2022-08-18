@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const Product = require("../models/Product");
-
+ 
 const {verifyTokenAndAdmin} = require("./verifyToken");
+const {verifyToken} = require("./verifyToken");
+
 
 
 // CREATE Product
@@ -15,6 +17,7 @@ router.post("/add", verifyTokenAndAdmin, async (req, res) => {
       res.status(500).json(err);
     }
   });
+
 
 
 // UPDATE Product
@@ -35,7 +38,7 @@ router.put("/:id", verifyTokenAndAdmin, async(req, res) => {
 })
 
 // FIND Product
-router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
+router.get("/find/:id", async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
         res.status(200).json(product);
@@ -45,19 +48,18 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
 })
 
 // FIND ALL Products (with sorting new products and same category)
-router.get("/all", verifyTokenAndAdmin, async (req, res) => {
+router.get("/", async (req, res) => {
     const newQuery = req.query.new;
-    const catQuery = req.query.new;
+    const catQuery = req.query.category;
 
     try {
         let products;
-
-        if (qNew){
-            products = await Product.find().sort({createdAt: -1}).limit(10);
+        if (newQuery){
+            products = await Product.find().sort({createdAt: -1}).limit(1)
         } 
-        else if (qCategory){
+        else if (catQuery){
             products = await Product.find({categories:{
-                $in: [qCategory],
+                $in: [catQuery],
             },
         });
         } else {

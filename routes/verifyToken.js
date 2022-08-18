@@ -11,7 +11,7 @@ const verifyToken = (req,res,next)=>{
             req.user = user;
             next();
         })
-    } else {
+    } else { 
         return res.status(401).json("Authentication failed");
     }
 }
@@ -35,6 +35,7 @@ const verifyTokenAndAdmin = (req,res,next)=>{
         }
     })
 }
+
 
 
 module.exports = {verifyToken, verifyTokenAndAut, verifyTokenAndAdmin};

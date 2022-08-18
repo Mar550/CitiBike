@@ -8,14 +8,12 @@ const CryptoJS = require("crypto-js");
 
 router.put("/:id", verifyTokenAndAut, async (req, res) => {
     const checkedid = req.params.id;
-
     if (req.body.password) {
       req.body.password = CryptoJS.AES.encrypt(
         req.body.password,
         process.env.PASS_SECRET_KEY
       ).toString();
     }
-  
     try {
       const updatedUser = await User.findByIdAndUpdate(
         checkedid.trim(),

@@ -1,15 +1,12 @@
 const router = require("express").Router();
-
 const { json } = require("body-parser");
 const Order = require("../models/Order");
-
 const {verifyToken, verifyTokenAndAut, verifyTokenAndAdmin} = require("./verifyToken");
 
 
 //CREATE Order
 router.post("/create", verifyToken, async (req, res) => {
     const newOrder = new Order(req.body);
-
     try{
         const savedOrder = await newOrder.save();
         res.status(200).json(savedOrder);
@@ -54,8 +51,6 @@ router.get("/findall", verifyTokenAndAdmin, async(req,res) => {
         res.status(500).json(err);
     }
 })
-
-
 
 //DELETE Order
 router.delete("/:id", verifyTokenAndAut, async (req, res) => {
