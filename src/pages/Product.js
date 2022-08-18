@@ -22,16 +22,16 @@ const Product = () => {
     const [quantity,setQuantity] = useState(1);
     const dispatch = useDispatch();
 
+    // Add condition to addtocart: if states not null then add to cart, else alert message.
+    const getProduct = async () => {
+        const result = await publicRequest.get("/products/find/" + id);
+        setProduct(result.data);
+        console.log(product)
+    };
+
     useEffect(() => {
-        const getProduct = async () => {
-            try {
-                const res = await publicRequest.get("/products/find/" + id);
-                setProduct(res.data);
-                console.log(res)
-            } catch {}
-        };
         getProduct();
-    }, [id]);
+    }, []);
     
     const addQuantity = () => {
         setQuantity(quantity + 1)
@@ -55,9 +55,9 @@ const Product = () => {
     <Wrapper>
         <Navbar/>
             <Announcement/>
-            <div className="wrap">
+            <div className="wrap">  
                 <div className="imagecontainer">
-                    <img className='image' src={product.img}/>
+                    <img className='image-single' src={product.img}/>
                 </div>
                 <div className='informations'>
                     <h1 className='title'> {product.title} </h1>
@@ -104,23 +104,28 @@ const Wrapper = styled.div`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    margin-left: 7px;
+    margin-left: 12px;
     cursor:pointer;
+    border: 1px solid black;
 }
 
 .wrap{
     padding: 50px;
     display:flex;
+    gap: 2rem;
 }
 
 .imagecontainer{
     flex: 1;
 }
 
-.image{
+.image-single{
     width: 100%;
-    height: 90vh;
     object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    margin-top: 10%;
 }
 
 .informations{
@@ -129,16 +134,19 @@ const Wrapper = styled.div`
 }
 
 .title{
-    font-weight: 200;
+    font-weight: 600;
 }
 
 .description{
     margin: 20px 0px;
+
 }
 
 .price{
     font-weight: 100;
-    font-size: 40px;    
+    font-size: 40px;
+    color: red;  
+    margin-top: 20px;  
 }
 
 .optionsContainer{
@@ -170,6 +178,7 @@ const Wrapper = styled.div`
     background-color: ${(props) => props.color};
     margin: 0px 5px;
     cursor: pointer;
+    border: 1px solid black;
 }
 
 .size{

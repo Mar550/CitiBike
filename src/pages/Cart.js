@@ -18,7 +18,7 @@ import  { RiDeleteBin5Line } from 'react-icons/ri';
 const Cart = () => {
     const cart = useSelector(state=> state.cart);
     const dispatch = useDispatch();
-    
+    console.log(cart.products)
     const [product, setProduct] = useState({});
     const [quantity,setQuantity] = useState(1);
 
@@ -60,7 +60,7 @@ const Cart = () => {
                 {cart.products.map(product =>(
                         <div className="product"> 
                             <div className='productDetails'> 
-                                <img src={image} className="image"/> 
+                                <img src={product.img} className="image"/> 
                                 <div className='details'>
                                     <span className='name'> {product.title} </span>
                                     <span className='id'> <b> ID </b> {product.id}</span>  
