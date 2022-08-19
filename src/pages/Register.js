@@ -8,6 +8,7 @@ import {BsGithub} from 'react-icons/bs';
 import {FaGooglePlus} from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Announcement from '../components/Announcement'
 
 const Register = () => {
 
@@ -38,9 +39,10 @@ const Register = () => {
   return (
     <Wrapper>      
       <div className="container">
+      <Announcement/> 
       <Navbar/>
       <div className="login-container">
-        <img id="image" src={require('../assets/access.svg').default} alt='mySvgImage' />
+        <img id="image" src={require('../assets/register3.svg').default} alt='mySvgImage' />
           <div className="login-info-container">
             <h1 className="title"> SIGN UP  </h1>
             <form className="inputs-container" onSubmit={handleSubmit} >
@@ -67,7 +69,7 @@ const Register = () => {
                 name="password"/>
               
                 <button className="btn" type="submit"> Create An Account </button>
-                <p> Already registered ? <Link to="/login"><span className="span"> Sign In here </span> </Link></p>
+                <p> Already registered ? <Link to="/login" style={{ textDecoration: 'none' }}><span className="span"> Sign In here </span> </Link></p>
             </form>
             <div className="subcontainer">
                 <p> or you can use </p>
@@ -88,29 +90,24 @@ const Register = () => {
 
 const Wrapper = styled.div`
 
-
-
 .icones{
   margin-top: 1rem;
   display:flex;
   gap: 1rem;
-  font-size: 2.5rem;
+  font-size: 2rem;
   cursor:pointer;
 }
 
 .login-container {
-  height: 50em;
-  width: 80em;
+  width: 85%;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  gap: 3rem;
-
 }
 
 .login-info-container {
-  width: 45%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,7 +115,9 @@ const Wrapper = styled.div`
   background-color: #E8E8E8;
   gap: 20px;
   margin-top: 3rem;
-  height: 40rem;
+  margin-bottom: 3rem;
+  margin-left: 8rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .image-container {
@@ -131,7 +130,7 @@ const Wrapper = styled.div`
 .title {
   margin-top: 3rem;
   text-transform: capitalize;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 900;
   letter-spacing: 1px;
   color: black;
@@ -166,9 +165,9 @@ const Wrapper = styled.div`
 }
 
 #image{
-  width: 45%;
-  margin-left: 4rem;
-  margin-top: -3rem;
+  width: 40%;
+  margin-top:1rem;
+  margin-left: 8rem;
 }
 
 .social-login-element:hover {
@@ -182,7 +181,7 @@ const Wrapper = styled.div`
 
 .inputs-container {
   margin-top: 1.5rem;
-  height: 55%;
+  height: 50%;
   width: 85%;
   display: flex;
   flex-direction: column;
@@ -223,7 +222,7 @@ const Wrapper = styled.div`
   color: white;
   border: none;
   border-radius: 5px;
-  background-color: #008080;
+  background-color: #3f51b5;
   cursor: pointer;
 }
 
@@ -232,8 +231,8 @@ const Wrapper = styled.div`
 }
 
 .span {
-  color: #008080;
-  font-weight: 600;
+  color: #3f51b5;
+  font-weight: 800;
   cursor: pointer;
 }
 

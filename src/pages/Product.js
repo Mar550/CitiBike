@@ -88,7 +88,7 @@ const Product = () => {
                             <span className='number'> {quantity} </span>
                             <Add className="badge" overlap="rectangular" onClick={addQuantity} />
                         </div>
-                        <button className='button' onClick={addToCart}> ADD TO CART </button>
+                        <button className='buttonb' onClick={addToCart}> ADD TO CART </button>
                     </div>
                 </div>
             </div>
@@ -120,12 +120,11 @@ const Wrapper = styled.div`
 }
 
 .image-single{
-    width: 100%;
+    width: 80%;
     object-fit: cover;
     display: flex;
     flex-direction: column;
     justify-content:center;
-    margin-top: 10%;
 }
 
 .informations{
@@ -210,17 +209,19 @@ const Wrapper = styled.div`
     margin: 0px 5px;
 }
 
-.button{
+.buttonb{
     padding: 15px;
-    border: 2px solid teal;
+    border: 2px solid black;
     background-color: white;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 700;
     
 }
 
-.button:hover{
-    background-color: #f8f4f4;
+.buttonb:hover{
+    background-color: black;
+    color:white;
+    font-weight: 900;
 }
 `
 

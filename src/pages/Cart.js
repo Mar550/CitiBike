@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 import { removeProduct } from '../features/cartRedux';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import  { RiDeleteBin5Line } from 'react-icons/ri';
+import  { MdRemoveShoppingCart } from 'react-icons/md';
 
 
 const Cart = () => {
@@ -56,20 +56,23 @@ const Cart = () => {
                     </div> 
                     <Link to="/products"> <button className='topButton'> CONTINUE SHOPPING </button> </Link>
                 </div>
-                <div className="left">
+                <div className="leftb">
                 {cart.products.map(product =>(
                         <div className="product"> 
                             <div className='productDetails'> 
                                 <img src={product.img} className="image"/> 
                                 <div className='details'>
-                                    <span className='name'> {product.title} </span>
-                                    <span className='id'> <b> ID </b> {product.id}</span>  
-                                    <div id='color' color={product.color}></div> 
+                                    <h3 className='name'> {product.title} </h3>
+                                    <span className='id'> <b> ID: </b> {product._id}</span>  
+                                    <div className="colordiv">
+                                        <span> <b> Color: </b>  </span>
+                                        <div id='color' color={product.color}></div>
+                                    </div>
                                     <span className='size'> <b> Size: </b> {product.size} </span> 
                                 </div>   
                             </div>
                             <div className='priceContainer'>
-                                <RiDeleteBin5Line className="deleteicon" onClick={removeFromCart}/>
+                                <MdRemoveShoppingCart className="deleteicon" onClick={removeFromCart}/>
                                 <div className='amount'>
                                     <Add className= "icon-quantity" onClick={addQuantity} />
                                         <div className='number'> {product.quantity}  </div>
@@ -116,8 +119,16 @@ const Cart = () => {
 
 const Wrapper = styled.div`
 
+.leftb{
+    margin-top: 1rem;
+}
+.colordiv{
+    display:flex;
+    flex-direction: row;
+    gap: 1rem;
+}
 .deleteicon{
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor:pointer;
 }
 .mainrow{
@@ -126,7 +137,6 @@ const Wrapper = styled.div`
     flex-direction: row;
     width:100%;
 }
-
 .maincol{
     display:flex; 
     flex-direction: column;
@@ -136,30 +146,24 @@ const Wrapper = styled.div`
     flex: 3;
 
 }
-
 .icon-quantity{
     cursor:pointer;
+    font-size:22px;
+    border: 1px solid black;
 }
-.icon-quantity :hover{
-    font-weight: bold;
-}
-
 .wrap{
     padding: 20px;
 }
-
 h1{
     font-weight: 600;
     text-align: center;
 }
-
 .top{
     display: flex;
     justify-content: space-between;
     padding: 20px;
     width: 90%;
 }
-
 .topButton{
     padding: 10px;
     font-weight: 800;
@@ -170,89 +174,77 @@ h1{
     height: 2.5rem;
     float:right;
 }
-
 .topButton:hover{
     border: 3px solid black;
     background-color: black;
     color:white;
 }
-
-
 .topText{
     text-decoration: underline;
     font-weight: bold;
     cursor: pointer;
     margin: 0px 10px;
 }
-
 .bottom{
     display: flex;
     justify-content: space-between;
 }
-
 .informations{
     flex: 3;
 }
-
 .product{
     display: flex;
     justify-content: space-between;
 }
-
 .productDetails{
     flex: 2;
     display: flex;
 }
-
 .image{
-    width: 200px;
+    width: 230px;
+    margin-top: 0.5rem;
 }
-
 .details{
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
-
-
 #color{
     width: 20px;
     height: 20px;
     border-radius: 50%;
     background-color: grey;        
 }
-
 .priceContainer{
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: end;
+    gap: 23px;
     justify-content: center;
+    margin-right: 4.5rem;
 }
-
 .amount{
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
 }
-
 .number{
-    font-size: 1.7rem;
-    margin: 5px;
+    font-size: 1.5rem;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: 800;
 }
-
 .price{
-    font-size: 30px;
-    font-weight: 300;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: red;
 }
-
 hr{
     background-color: #eee;
     border: none;
     height: 1px;
 }
-
 .summary{
     position: sticky;
     border: 0.5px solid lightgray;
@@ -260,13 +252,10 @@ hr{
     padding: 1.6rem;
     height: 56vh;
     top:0;
-    
 }  
-
 .summaryTitle{
     font-weight: 200;
 }
-
 .summaryItem{
     margin: 30px 0px;
     display: flex;
@@ -274,11 +263,9 @@ hr{
     font-weight: 600;
 
 }
-
 #total{
     font-weight: bold;
 }
-
 .checkout{
     width: 100%;
     padding: 10px;
@@ -287,7 +274,6 @@ hr{
     font-weight: 600;
     cursor:pointer;
 }
-
 .checkout:hover{
     background-color:black;
     color:white;

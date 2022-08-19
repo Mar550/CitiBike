@@ -1,17 +1,38 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import styled from 'styled-components';
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Login from '../pages/Login';
+import axios from 'axios';
+import userEvent from '@testing-library/user-event';
 
 const Navbar = () => {
-
+        
     const [buttonPopup, setButtonPopup] = useState(false);
-
+    
     const quantity = useSelector(state=>state.cart.quantity)
     console.log(quantity);
+    
+    const [search, setSearch] = useState("");
+    const [products, setProducts] = useState([]);
+  
+    const getProducts = async () => {
+        const res = await axios.get("/products/");
+        setProducts(res.data);
+        console.log(res)
+    };
+
+    useEffect(() => {
+        getProducts();
+    }, []);
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+    console.log(products.filter(product=>product.title.toLowerCase().includes(search)))
+
 
     return (
         <Wrapper>
@@ -20,17 +41,24 @@ const Navbar = () => {
             <div className="left"> 
                 <span className="language"> EN </span>
                 <div className="searchContainer">
-                    <Search className="icon-search"  />
-                    <input type="text" className="input-search" placeholder="Search product ..." /> 
+                    <Search className="icon-search"  onClick={getProducts} />
+                    <input 
+                    type="text" 
+                    className="input-search" 
+                    placeholder="Search product ..." 
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}/> 
                 </div>
-            </div>       
+            </div>
             <div className="center"> 
-                <h1 className="logo"> Citibike </h1>
+            <Link className="homelink" to="/" style={{ textDecoration: 'none' }}>      
+                <h1 className="logo"> Citibike </h1> 
+             </Link> 
              </div>
             <div className="right"> 
                 <div className="auth">
                     <div className="item" onClick={() => setButtonPopup(true)}> SIGN IN </div>
-                    <Link to="/register"> <div className="item"> REGISTER </div> </Link>
+                    <Link to="/register" style={{ textDecoration: 'none' }}> <div className="item"> REGISTER </div> </Link>
                 </div>
                 <Link to="/cart">
                 <div className="itemb">
@@ -101,7 +129,7 @@ const Wrapper = styled.div`
 
     .input-search{
        border-radius: 5px;
-        height: 20px;
+        height: 25px;
         width: 12rem;
     }
     
@@ -118,6 +146,8 @@ const Wrapper = styled.div`
         border: 2px solid white;
         padding: 0.5rem;
         border-radius: 15px;
+        text-decoration: none;
+        color: white;
     }
     
     .auth{
@@ -132,6 +162,11 @@ const Wrapper = styled.div`
 
     .icon-cart{
         color:white;
+    }
+
+    .homelink{
+        color:white;
+        
     }
     
 `

@@ -29,9 +29,8 @@ const handleSubmit = (e) => {
       <Wrapper>
         <div className="containerlogin">
           <div className="login-info-container">
-            <FaWindowClose className="close-icon" onClick={() => props.setTrigger(false)}/>
-            <h1 className="title"> SIGN IN</h1>
-            <img id="image" src={require('../assets/login2.svg').default} alt='mySvgImage' />
+            <img id="image" src={require('../assets/login4.svg').default} alt='mySvgImage' />
+            <h1 className="title"> login </h1>
             <form className="inputs-container">
                 <input 
                 className="input" 
@@ -43,9 +42,12 @@ const handleSubmit = (e) => {
                 type="password" 
                 placeholder="Password" 
                 onChange={(e) => setPassword(e.target.value)}/>
+                <div className="buttons">
                 <button className="btn" onClick={handleSubmit} disabled={isFetching}> Login</button>
+                <button className="btn" onClick={() => props.setTrigger(false)}> Close </button> 
+                </div>
                 {error && <p>Something went wrong...</p>}
-                <p>Still not registered ? <Link to="/register"><span className="span"> Create an account </span> </Link></p>      
+                <p>Still not registered ? <Link to="/register" style={{ textDecoration: 'none' }}><span className="span"> Create an account </span> </Link></p>      
             </form>
             <div className="subcontainer">
                 <p> or  </p>
@@ -85,14 +87,6 @@ const Wrapper = styled.div`
   cursor:pointer;
 }
 
-.close-icon{
-  font-size: 2rem;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  cursor: pointer;
-}
-
 .login-info-container {
   position: relative;
   width: 30%;
@@ -100,8 +94,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 1rem;
-  background-color: #f8f3ff;
+  padding: 1.5rem;
+  background-color: white;
   gap: 20px;
   border-radius: 5px;
   margin-top: 1.5rem;
@@ -110,7 +104,9 @@ const Wrapper = styled.div`
 }
 
 #image{
-  width: 45%;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title {
@@ -120,8 +116,9 @@ const Wrapper = styled.div`
   font-weight: 1300;
   letter-spacing: 1px;
   color: black;
-}
+  font-family: 'Heebo', sans-serif;
 
+}
 
 .login-info-container > p {
   font-size: 1.25em;
@@ -141,13 +138,13 @@ const Wrapper = styled.div`
 
 .input, .btn {
   width: 90%;
-  height: 3rem;
+  height: 2.8rem;
   font-size: 1em;
 }
 
 .input {
   padding-left: 20px;
-  border: none;
+  border: 1px solid grey;
   border-radius: 5px;
   font-weight: 500;
   letter-spacing: 1px;
@@ -155,17 +152,17 @@ const Wrapper = styled.div`
 }
 
 .input:hover {
-  border: 2px solid black;
+  border: 2px solid grey;
 }
 
 .btn {
-  width: 80%;
+  width: 9.2rem;;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: white;
   border: none;
   border-radius: 5px;
-  background-color: #008080;
+  background-color: #3f51b5;
   cursor: pointer;
   margin-top: 1.5rem;
 }
@@ -175,9 +172,15 @@ const Wrapper = styled.div`
 }
 
 .span {
-  color: #008080;
-  font-weight: 600;
+  color: #3f51b5;
+  font-weight: 800;
   cursor: pointer;
+}
+
+.buttons{
+  display:flex;
+  flex-direction: row;
+  gap: 0.5rem;
 }
 
 @media screen and (max-width: 1000px) {

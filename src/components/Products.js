@@ -55,7 +55,7 @@ const Products = ({cat, filters, sort}) => {
   return (
     <Wrapper>
         <h1 className="title"> Our popular products </h1>
-        <div className="container">
+        <div className="containerc">
           {cat ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
           : products.slice(0, 8).map((item) => <Product item={item} key={item.id} />)}
         </div>
@@ -65,19 +65,19 @@ const Products = ({cat, filters, sort}) => {
 
 const Wrapper = styled.div`
 
-.container{
+.containerc{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     padding: 20px; 
     width: 21rem;
-    gap: 4rem;
-    margin-top:1rem;
-    margin-bottom: 1rem;
+    gap: 8rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
 }
 
 .title{
-  margin-top:2rem;
+  margin-top: 2rem;
   text-align:center;
   font-weight: bold;
   font-size: 2.5rem;

@@ -28,8 +28,8 @@ const ProductList = () => {
   return (
     <Wrapper>
         <div className="container">
-            <Navbar/>
             <Announcement/>
+            <Navbar/>
             <div className="filtercontainer">
                 <div className="filter">
                     <span className="filtertext"> Filter Products: </span>

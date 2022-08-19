@@ -19,12 +19,13 @@ const Newsletter = () => {
 
 const Wrapper = styled.div`
 .container{
+    margin-top: 4rem;
     height: 60vh;
     background-color: #E8E8E8;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column
+    flex-direction: column;
 }
 
 .title{
@@ -56,7 +57,7 @@ const Wrapper = styled.div`
 .button{
     flex: 1;
     border: none;
-    background-color: teal;
+    background-color: #3f51b5;
     color: white;
 
 }

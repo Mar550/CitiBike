@@ -5,7 +5,7 @@ const Announcement = () => {
   return (
     <Wrapper>
     <div className="announcement">
-        Don't miss our best deal, 30% on all our products !
+        Don't miss our new best deal, 30% on all the products !
     </div>
     </Wrapper>
   )
@@ -13,11 +13,10 @@ const Announcement = () => {
 
 const Wrapper = styled.div `
 .announcement{
-  height: 2rem;
-  background-color: white;
-  color:black;
-  font-size: 1rem;
-  font-weight: bold;
+  height: 2.1rem;
+  background-color: #383c44;
+  color:white;
+  font-size: 1.1rem;
   display: flex;
   flex-direction: row;
   justify-content: center;

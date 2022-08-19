@@ -3,29 +3,29 @@ import styled from "styled-components";
 import { SearchOutlined } from '@material-ui/icons';
 import { ShoppingCartOutlined } from '@material-ui/icons';
 import { FavoriteBorderOutlined } from '@material-ui/icons';
-import img2 from '../assets/img2.png'
-
+import {Link} from 'react-router-dom';
 
 const Product = ({item}) => {
-    
-
 
     return (
     <Wrapper>
         <div className="container">
-            <p className='title'> {item.title} </p>
-
+            <div>
             <img className="image" src={item.img}/>
             <div className="informations"> 
-                <div className="icon">
-                    <ShoppingCartOutlined/>
-                </div>
-                <div className="icon">
-                    <SearchOutlined/>
+                <div className="icon"> 
+                    <Link to={`/product/${item._id}`}>
+                        <SearchOutlined/>
+                    </Link>
                 </div>
                 <div className="icon">
                     <FavoriteBorderOutlined/>
                 </div>
+            </div>
+            <div className="divrow">
+            <h2 > {item.title} </h2>
+            <h2 className="price"> <i>{item.price} $ </i> </h2>
+            </div>
             </div>
         </div>
     </Wrapper>
@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 .container{
     flex: 1;
     margin: 10px;
-    width: 85%;
+    width: 100%;
     height: 250px;
     display: flex;
     align-items: center;
@@ -47,7 +47,16 @@ const Wrapper = styled.div`
 
 }
 
+i{
+    color:red;
+}
 
+.divrow{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
 
 .icon{
     width: 40px;
@@ -85,6 +94,7 @@ const Wrapper = styled.div`
 .informations:hover{
     opacity:100%;
 }
+
 
 `
 export default Product;
