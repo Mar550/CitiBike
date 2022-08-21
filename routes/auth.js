@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 var mongoose = require('mongoose');
 const Joi = require("joi");
 const bcrypt = require("bcrypt")
+const {verifyToken, verifyTokenAndAut, verifyTokenAndAdmin} = require("./verifyToken");
 
 // REGISTER route
 router.post("/register", async (req,res)=>{
@@ -59,4 +60,13 @@ router.post("/login", async (req, res) => {
       res.status(500).json(err);
     }
   });
+
+  let refreshTokens = [];
+
+  router.post("/logout", verifyToken, (req,res) =>{
+    const refreshToken = req.body.token; 
+    refreshTokens = refreshTokens.filter((token) => token !== refreshToken)
+    res.status(200).json("Logout successful...!")
+  })
+
 module.exports = router;
