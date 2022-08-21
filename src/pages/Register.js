@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { publicRequest } from '../request';
@@ -10,7 +10,11 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Announcement from '../components/Announcement'
 
+
+
 const Register = () => {
+
+  
 
   const [data, setData] = useState({
     username:"",
@@ -19,7 +23,7 @@ const Register = () => {
   })
 
   const [user, setUser] = useState({});
-
+  
   const handleChange = ({ currentTarget: input }) => {
       setData({ ...data, [input.name]:input.value })
   }
@@ -29,12 +33,16 @@ const Register = () => {
   const handleSubmit = async () => {
       try {
           const res = await publicRequest.post("/auth/register/",data);
-            console.log(res);
-            console.log("ok");
-            window.location = "/"
-      } catch(error) {}
+          window.location.replace('/')
+        } catch(error) {}
   };
 
+  useEffect(()=> {
+    if(localStorage.getItem('user-info'))
+      {
+        navigate("/")
+      }
+  },[])
 
   return (
     <Wrapper>      

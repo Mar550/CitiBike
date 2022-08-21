@@ -6,11 +6,10 @@ import { AiFillTwitterCircle } from 'react-icons/ai';
 import { BsGithub } from 'react-icons/bs';
 import { FaGooglePlus } from 'react-icons/fa';
 import { FaWindowClose } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { publicRequest } from '../request';
 import { login } from "../features/serverCalls";
 import { useDispatch, useSelector } from "react-redux";
-
 
 const Login = (props) => {
 
@@ -18,12 +17,14 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isFetching, error } = useSelector((state) => state.user);
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  login(dispatch, { username, password });
-};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+    window.location.reload();
+  };
 
     return (props.trigger) ? ( 
       <Wrapper>
@@ -35,11 +36,15 @@ const handleSubmit = (e) => {
                 <input 
                 className="input" 
                 type="text" 
+                name="username"
+                value={username}
                 placeholder="Username" 
                 onChange={(e) => setUsername(e.target.value)}/>
                 <input 
                 className="input" 
                 type="password" 
+                name="password"
+                value={password}
                 placeholder="Password" 
                 onChange={(e) => setPassword(e.target.value)}/>
                 <div className="buttons">

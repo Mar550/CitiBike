@@ -43,44 +43,7 @@ export const categories = [
   },
 ];
 
-export const popularProducts = [
-  {
-    id:1,
-    img:"https://i.ibb.co/T29tVzd/p1-removebg-preview.png",
-  },
-  {
-    id:2,
-    img:"https://i.ibb.co/XtS2JWC/p2-removebg-preview.png",
-  },
-  {
-    id:3,
-    img:"https://i.ibb.co/LC7T8pR/p3-removebg-preview.png",
-  },
-  {
-    id:4,
-    img:"https://i.ibb.co/9sRg5Md/p4-removebg-preview.png",
-  },
-  {
-    id:5,
-    img:"https://i.ibb.co/LRHqfDg/p5-removebg-preview.png",
-  },
-  {
-    id:6,
-    img:"https://i.ibb.co/0DJfG09/p6-removebg-preview.png",
-  },
-  {
-    id:7,
-    img:"https://i.ibb.co/LPK9cdT/p7-removebg-preview.png",
-  },
-  {
-    id:8,
-    img:"https://i.ibb.co/CsgrQrK/p8-removebg-preview.png", 
-  },
-  {
-    id:9,
-    img:"https://i.ibb.co/7jPxMy6/p9-removebg-preview.png", 
-  }
-]
+
 
 
 

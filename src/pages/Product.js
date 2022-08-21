@@ -65,7 +65,7 @@ const Product = () => {
                     <span className='price'> {product.price} € </span>
                     <div className='optionsContainer'>
                     <div className='options'>
-                            <span className='optionTitle'> Colors </span>
+                            <span className='optionTitle'> Color </span>
                             {product.color?.map((col)=>(
                                 <div className="divcolor"  style={{backgroundColor: col}} 
                                 color={col} key={col} onClick={()=>setColor(col)}>  </div>
@@ -74,9 +74,10 @@ const Product = () => {
                     </div>
                     <div className='options'>
                             <span className='optionTitle'> Size </span>
-                            <select className='size' onChange={(e) => setSize(e.target.value)}> 
-                            {product.size?.map((si) => (
-                                <option className='sizeOption' key={si}>{si}</option>
+                            <select className='size' onChange={(e) => setSize(e.target.value)}>
+                                <option className='sizeOption' default> Select </option> 
+                            {product.size?.map((siz) => (
+                                <option className='sizeOption' name='size' key={siz}>{siz}</option>
                             ))}
 
                             </select>

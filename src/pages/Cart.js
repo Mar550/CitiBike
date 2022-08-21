@@ -19,23 +19,11 @@ const Cart = () => {
     const cart = useSelector(state=> state.cart);
     const dispatch = useDispatch();
     console.log(cart.products)
-    const [product, setProduct] = useState({});
     const [quantity,setQuantity] = useState(1);
+    const [product, setProduct] = useState({});
 
-    const addQuantity = () => {
-        setQuantity(quantity + 1)
-    }
-
-    const removeQuantity = () => {
-        if (quantity > 2) {
-            setQuantity(quantity - 1)
-        } else {
-            setQuantity(1)
-        }
-    }
-
-    const removeFromCart = (product) => {
-        dispatch(removeProduct(product));
+    const removeFromCart = () => {
+        dispatch(removeProduct(cart));
     }
 
 
@@ -66,7 +54,7 @@ const Cart = () => {
                                     <span className='id'> <b> ID: </b> {product._id}</span>  
                                     <div className="colordiv">
                                         <span> <b> Color: </b>  </span>
-                                        <div id='color' color={product.color}></div>
+                                        <div id='color' style={{ backgroundColor: `${product.color}`, border:`1px solid black` }}></div>
                                     </div>
                                     <span className='size'> <b> Size: </b> {product.size} </span> 
                                 </div>   
@@ -74,9 +62,9 @@ const Cart = () => {
                             <div className='priceContainer'>
                                 <MdRemoveShoppingCart className="deleteicon" onClick={removeFromCart}/>
                                 <div className='amount'>
-                                    <Add className= "icon-quantity" onClick={addQuantity} />
+                                    <Add className= "icon-quantity"  />
                                         <div className='number'> {product.quantity}  </div>
-                                    <Remove className= "icon-quantity" onClick={removeQuantity} />
+                                    <Remove className= "icon-quantity"  />
                                 </div>
                                 <div className='price'> {product.price} € </div> 
                             </div>
@@ -214,7 +202,8 @@ h1{
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: grey;        
+    background-color: ${(props) => props.color};
+
 }
 .priceContainer{
     flex: 1;

@@ -1,6 +1,6 @@
 # CitiBike
 
-CITIBIKE is an full-stack e-commerce application created with MERN stack, in the topic of e-bikes. The app features all the basic functionalities of an e-commerce website, including an admin panel and a stripe payment processing. 
+CITIBIKE is an full-stack e-commerce application created with React JS, Node JS and Express JS. The app features all the basic functionalities of an e-commerce website, and is built around the topic of electric bikes.
 
 ## How to run the app
 
@@ -15,8 +15,8 @@ CITIBIKE is an full-stack e-commerce application created with MERN stack, in the
     React JS
 
 - Back-End
-    Node JS
-    Express JS
+    Node JS,
+    Express JS,
     MongoDB
 
 ## Prerequisites
@@ -28,9 +28,11 @@ CITIBIKE is an full-stack e-commerce application created with MERN stack, in the
 
 - React Router Dom
 - React Styled Components
+- Redux toolkit
 - React Scripts
 - React material UI
-- Exoress
+- React icons
+- Express
 - JsonWebToken
 - Mongoose
 - Nodemon
@@ -38,21 +40,27 @@ CITIBIKE is an full-stack e-commerce application created with MERN stack, in the
 
 ## User Stories
 
-- The admin can access the store analytics
-- The admin can manage customers information
-- The admin can manage production information
-- The admin can monitor sales and stocks
-- The admin can manage payments and deliveries
-- A user can access to the home page
-- A user can create an account
-- A user can login into his account
-- A user can search a product
-- A user can add to cart a product
-- A user can create an order
-- A user can pay the order
+- The user can create an account
+- The user can login into his account
+- The user can search for a product
+- The user can access to the products of each category
+- The user can sort the products following their price and their adding date
+- The user can view the caracteristics of a products
+- The user can select a quantity, color and size for each product
+- The user can add to cart a product
+- The user can launch an order
+- The user can pay the order
+- The user can contact the owner of the website
 
 ## Coming features
 
-- Light/Dark mode for the website
-- ChatBot to help the website visitors
+- Payment processing with stripe
+- Rating and reviews option for each product
 
+## What the websie looks like 
+
+<img src="https://i.ibb.co/MSy1LtG/Capture1.png" alt="Capture1">
+<img src="https://i.ibb.co/QvQsnXV/capture-2.png" alt="capture-2">
+<img src="https://i.ibb.co/Mg3Xtth/capture-3.png" alt="capture-3">
+<img src="https://i.ibb.co/3h97yx9/capture-4.png" alt="capture-4"> 
+<img src="https://i.ibb.co/bXQthL0/capture-5.png" alt="capture-5">
