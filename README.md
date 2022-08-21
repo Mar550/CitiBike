@@ -1,6 +1,12 @@
-# CitiBike
+# CitiBike (Client Branch)
 
 CITIBIKE is an full-stack e-commerce application created with React JS, Node JS and Express JS. The app features all the basic functionalities of an e-commerce website, and is built around the topic of electric bikes.
+
+## Demo
+
+You can find a quick demo of the application in the following youtube link:
+https://www.youtube.com/watch?v=AQ7Psim_8xo&feature=youtu.be
+
 
 ## How to run the app
 
