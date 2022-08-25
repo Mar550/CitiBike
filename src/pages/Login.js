@@ -30,7 +30,6 @@ const Login = (props) => {
       <Wrapper>
         <div className="containerlogin">
           <div className="login-info-container">
-            <img id="image" src={require('../assets/login4.svg').default} alt='mySvgImage' />
             <h1 className="title"> login </h1>
             <form className="inputs-container">
                 <input 
@@ -82,17 +81,15 @@ const Wrapper = styled.div`
   bottom: 0;
   margin: auto;
   background-color: rgba(0,0,0,0.8);
-}
-
-.icones{
+  }
+  .icones{
   display:flex;
   gap: 10px;
   font-size: 2rem;
   margin-top: 10px;
   cursor:pointer;
-}
-
-.login-info-container {
+  }
+  .login-info-container {
   position: relative;
   width: 30%;
   display: flex;
@@ -106,62 +103,54 @@ const Wrapper = styled.div`
   margin-top: 1.5rem;
   margin-left:auto;
   margin-right: auto;
-}
-
-#image{
+  }
+  #image{
   width: 65%;
+  
   margin-left: auto;
   margin-right: auto;
-}
-
-.title {
-  margin-top: 0.5rem;
+  }
+  .title {
+  margin-top: 2rem;
   text-transform: capitalize;
-  font-size: 2.6rem;
+  font-size: 3.5rem;
   font-weight: 1300;
   letter-spacing: 1px;
   color: black;
-  font-family: 'Heebo', sans-serif;
-
-}
-
-.login-info-container > p {
-  font-size: 1.25em;
-  margin-top: 1.5em;
-}
-
-.inputs-container {
-  margin-top: 0.5rem;
-  height: 55%;
+  }
+  .login-info-container > p {
+  font-size: 1.5em;
+  margin-top: 1.8em;
+  }
+  .inputs-container {
+  margin-top: 2rem;
+  height: 60%;
   width: 85%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  gap: 5px;
-}
-
-.input, .btn {
+  gap: 1.5rem;
+  }
+  .input, .btn {
   width: 90%;
   height: 2.8rem;
   font-size: 1em;
-}
-
-.input {
+  }
+  .input {
   padding-left: 20px;
   border: 1px solid grey;
   border-radius: 5px;
   font-weight: 500;
   letter-spacing: 1px;
+  
   box-sizing: border-box;
-}
-
-.input:hover {
+  }
+  .input:hover {
   border: 2px solid grey;
-}
-
-.btn {
-  width: 9.2rem;;
+  }
+  .btn {
+  width: 10rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: white;
@@ -170,64 +159,52 @@ const Wrapper = styled.div`
   background-color: #3f51b5;
   cursor: pointer;
   margin-top: 1.5rem;
-}
-
-.inputs-container p {
+  }
+  .inputs-container p {
   margin: 0;
-}
-
-.span {
+  }
+  .span {
   color: #3f51b5;
   font-weight: 800;
   cursor: pointer;
-}
-
-.buttons{
+  }
+  .buttons{
   display:flex;
   flex-direction: row;
   gap: 0.5rem;
-}
-
-@media screen and (max-width: 1000px) {
+  }
+  @media screen and (max-width: 1000px) {
   .login-container {
-      width: 70%;
-      margin-top: 3rem;
+  width: 70%;
+  margin-top: 3rem;
   }
   .login-info-container {
-      width: 100%;
-      border-radius: 5px;
-  }
+  width: 60%;
   
+  border-radius: 5px;
+  }
   .image-container {
-      display: none;
-  }  
-}
-
-@media screen and (max-width: 650px) {
-  .login-container {
-      width: 90%;
+  display: none;
   }
-}
-
-@media screen and (max-width: 500px) {
-  .login-container {
-      height: 90%;
   }
-
+  @media screen and (max-width: 650px) {
+  .login-container {
+  width: 50%;
+  }
+  }
+  @media screen and (max-width: 500px) {
+  .login-container {
+  height: 90%;
+  }
   .social-login {
-      flex-direction: column;
-      align-items: center;
-      height: 30%;
+  flex-direction: column;
+  align-items: center;
+  height: 30%;
   }
-
   .login-info-container > p {
-      margin: 0;
+  margin: 0;
   }
-}
-
-
-
-
+  }
 `
 
 export default Login;
