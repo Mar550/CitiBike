@@ -1,5 +1,4 @@
-
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Announcement from '../components/Announcement'
 import styled from 'styled-components'
 import Navbar from '../components/Navbar'
@@ -9,25 +8,34 @@ import image from '../assets/ebike.png'
 import { Add, Remove } from '@material-ui/icons'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom';
-import { removeProduct } from '../features/cartRedux';
+import { removeProduct, clearCart } from '../features/cartRedux';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import  { MdRemoveShoppingCart } from 'react-icons/md';
-
+import { AiTwotoneDelete } from 'react-icons/ai';
 
 const Cart = () => {
+
+    const [shipping, setShipping] = useState(0)
+
+    useEffect(() => { 
+        if (cart.total > 0){
+            setShipping(9.95)
+        }
+    });
+        
+
     const cart = useSelector(state=> state.cart);
     const dispatch = useDispatch();
     console.log(cart.products)
-    const [quantity,setQuantity] = useState(1);
-    const [product, setProduct] = useState({});
 
     const removeFromCart = () => {
         dispatch(removeProduct(cart));
     }
 
-
-  return (
+ 
+     
+return (
     <Wrapper>
         <div className='container'>
             <Announcement/>
@@ -40,9 +48,12 @@ const Cart = () => {
                     <div className='topTexts'> 
                        <div className='topText'> Shopping Cart ({cart.products.length})</div>  
                        <hr/>
-                       <div className='topText'> Your Favorites (0)</div>  
+                       <div className='topText'> Your Favorites (0)</div> 
                     </div> 
-                    <Link to="/products"> <button className='topButton'> CONTINUE SHOPPING </button> </Link>
+                    <div id="buttons">
+                        <button className="topButton" onClick = {() => {dispatch(clearCart())}}> CLEAR CART </button>
+                        <Link to="/products"> <button className='topButton'> CONTINUE SHOPPING </button> </Link>
+                    </div>
                 </div>
                 <div className="leftb">
                 {cart.products.map(product =>(
@@ -60,7 +71,7 @@ const Cart = () => {
                                 </div>   
                             </div>
                             <div className='priceContainer'>
-                                <MdRemoveShoppingCart className="deleteicon" onClick={removeFromCart}/>
+                                <MdRemoveShoppingCart className="deleteicon" onClick={()=>{dispatch(removeProduct(product._id))}}/>
                                 <div className='amount'>
                                     <Add className= "icon-quantity"  />
                                         <div className='number'> {product.quantity}  </div>
@@ -82,7 +93,7 @@ const Cart = () => {
                                 </div>
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> Standard Shipping </span>
-                                <span className='summaryPrice'> 9.95 € </span>
+                                <span className='summaryPrice'> {shipping} € </span>
                                 </div>
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> - Discount 10% </span>
@@ -90,7 +101,7 @@ const Cart = () => {
                                 </div>
                                 <div className='summaryItem'>  
                                 <span id="total" className='summaryText' type='total'> Total </span>
-                                <span id="total" className='summaryPrice'> {(cart.total) - (cart.total*0.1) + 9.95} € </span>
+                                <span id="total" className='summaryPrice'> {(cart.total) - (cart.total*0.1) + shipping} € </span>
                                 </div>                                
                                 <button className='checkout'> CHECKOUT NOW </button> 
                         </div>
@@ -107,6 +118,11 @@ const Cart = () => {
 
 const Wrapper = styled.div`
 
+#buttons{
+    display:flex;
+    flex-direction: row;
+    gap: 15px;
+}
 .leftb{
     margin-top: 1rem;
 }

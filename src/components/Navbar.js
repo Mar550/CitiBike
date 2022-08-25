@@ -70,12 +70,15 @@ const Navbar = () => {
                 <h1 className="logo"> Citibike </h1> 
              </Link> 
              </div>
-            <div className="right">        
+            <div className="right"> 
                 <div className="auth">
+                    <div className="item"  onClick={()=> {dispatch(logout())}}> LOGOUT </div>
+                </div>
+                <div className="auth">
+
                     <div className="item" onClick={() => setButtonPopup(true)}> SIGN IN </div>
                     <Link to="/register" style={{ textDecoration: 'none' }}> <div className="item"> REGISTER </div> </Link>
-               </div>
-            
+                </div>
                 <Link to="/cart">
                 <div className="itemb">
                     <Badge  overlap="rectangular" badgeContent={quantity} color="primary">
