@@ -1,17 +1,17 @@
 import React,{useEffect, useState} from 'react';
 import styled from 'styled-components';
-import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+import { Navigation, Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import Login from '../pages/Login';
 import axios from 'axios';
 import { useDispatch } from 'react-redux/es/exports';
-import userEvent from '@testing-library/user-event';
 import { useNavigate } from 'react-router-dom';
-import { toHaveStyle } from '@testing-library/jest-dom/dist/matchers';
 import { publicRequest } from '../request';
-import { loginSuccess, logout } from '../features/userRedux';
+import { logoutSuccess } from '../features/userRedux';
+import { loggedUser } from '../features/userRedux';
+import { selectUser } from '../features/userRedux';
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
         
@@ -25,7 +25,6 @@ const Navbar = () => {
     const [search, setSearch] = useState("");
     const [products, setProducts] = useState([]);
     
-
     const getProducts = async () => {
         const res = await axios.get("/products/");
         setProducts(res.data);
@@ -36,18 +35,12 @@ const Navbar = () => {
         getProducts();
     }, []);
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-    }
-    console.log(products.filter(product=>product.title.toLowerCase().includes(search)))
+    const user = useSelector(selectUser);
 
-    const Logout = async () => {
-        const res = await publicRequest.post("/auth/logout/");
-        localStorage.removeItem('token');
-        console.log("Logout done")
-        }
-     
-      
+    const logout = () => {
+        dispatch(logoutSuccess())
+        window.location.replace('/')
+    };
 
     return (
         <Wrapper>
@@ -70,15 +63,18 @@ const Navbar = () => {
                 <h1 className="logo"> Citibike </h1> 
              </Link> 
              </div>
-            <div className="right"> 
+             <div className="right"> 
+                {user ? 
                 <div className="auth">
-                    <div className="item"  onClick={()=> {dispatch(logout())}}> LOGOUT </div>
+                    <div className="item"  onClick={logout}> LOGOUT </div>
                 </div>
+                :
                 <div className="auth">
-
                     <div className="item" onClick={() => setButtonPopup(true)}> SIGN IN </div>
                     <Link to="/register" style={{ textDecoration: 'none' }}> <div className="item"> REGISTER </div> </Link>
                 </div>
+                }
+                               
                 <Link to="/cart">
                 <div className="itemb">
                     <Badge  overlap="rectangular" badgeContent={quantity} color="primary">

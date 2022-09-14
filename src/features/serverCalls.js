@@ -1,6 +1,7 @@
 import { loginFailure, loginStart, loginSuccess } from "./userRedux";
 import { publicRequest } from "../request";
 
+
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
@@ -10,3 +11,13 @@ export const login = async (dispatch, user) => {
     dispatch(loginFailure());
   }
 };
+
+
+export const logout = () => {
+  localStorage.removeItem("jsonwebtoken");
+};
+
+
+
+//export const logout
+// see login page

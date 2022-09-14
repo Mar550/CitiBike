@@ -1,19 +1,15 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { BsFacebook } from 'react-icons/bs';
 import { AiFillTwitterCircle } from 'react-icons/ai';
 import { BsGithub } from 'react-icons/bs';
 import { FaGooglePlus } from 'react-icons/fa';
-import { FaWindowClose } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { publicRequest } from '../request';
 import { login } from "../features/serverCalls";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = (props) => {
 
-  const [trigger, setTrigger] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -23,8 +19,9 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
-    window.location.reload();
+    window.location.replace('/');
   };
+
 
     return (props.trigger) ? ( 
       <Wrapper>
@@ -47,7 +44,7 @@ const Login = (props) => {
                 placeholder="Password" 
                 onChange={(e) => setPassword(e.target.value)}/>
                 <div className="buttons">
-                <button className="btn" onClick={handleSubmit} disabled={isFetching}> Login</button>
+                <button className="btn" onClick={handleSubmit} > Login</button>
                 <button className="btn" onClick={() => props.setTrigger(false)}> Close </button> 
                 </div>
                 {error && <p>Something went wrong...</p>}
