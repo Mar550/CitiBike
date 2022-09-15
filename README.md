@@ -5,7 +5,7 @@ CITIBIKE is an full-stack e-commerce application created with React JS, Node JS 
 ## Demo
 
 You can find a quick demo of the application in the following youtube link:
-https://www.youtube.com/watch?v=AQ7Psim_8xo&feature=youtu.be
+https://www.youtube.com/watch?v=C4uqrEZ69Jo&t=6s
 
 
 ## How to run the app

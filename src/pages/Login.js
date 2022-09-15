@@ -22,7 +22,6 @@ const Login = (props) => {
     window.location.replace('/');
   };
 
-
     return (props.trigger) ? ( 
       <Wrapper>
         <div className="containerlogin">

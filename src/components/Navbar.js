@@ -7,9 +7,7 @@ import Login from '../pages/Login';
 import axios from 'axios';
 import { useDispatch } from 'react-redux/es/exports';
 import { useNavigate } from 'react-router-dom';
-import { publicRequest } from '../request';
 import { logoutSuccess } from '../features/userRedux';
-import { loggedUser } from '../features/userRedux';
 import { selectUser } from '../features/userRedux';
 import { useSelector } from "react-redux";
 
