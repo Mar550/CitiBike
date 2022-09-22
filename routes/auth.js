@@ -7,6 +7,7 @@ const Joi = require("joi");
 const bcrypt = require("bcrypt")
 const {verifyToken, verifyTokenAndAut, verifyTokenAndAdmin} = require("./verifyToken");
 
+
 // REGISTER route
 router.post("/register", async (req,res)=>{
     const user = new User({
@@ -29,7 +30,6 @@ router.post("/register", async (req,res)=>{
 
 
 // LOGIN Route 2
-
 router.post("/login", async (req, res) => {
     try {
       const user = await User.findOne({ username: req.body.username });
@@ -53,9 +53,9 @@ router.post("/login", async (req, res) => {
         {expiresIn:"3d"}
       );
   
-      const { password, ...others } = user._doc;
+      const { password, ...otherData } = user;
   
-      res.status(200).json({...others, accessToken});
+      res.status(200).json({...otherData, accessToken});
     } catch (err) {
       res.status(500).json(err);
     }

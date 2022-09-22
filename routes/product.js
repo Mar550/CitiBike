@@ -9,7 +9,6 @@ const {verifyToken} = require("./verifyToken");
 // CREATE Product
 router.post("/add", verifyTokenAndAdmin, async (req, res) => {
     const newProduct = new Product(req.body);
-  
     try {
       const savedProduct = await newProduct.save();
       res.status(200).json(savedProduct);
@@ -21,8 +20,7 @@ router.post("/add", verifyTokenAndAdmin, async (req, res) => {
 
 
 // UPDATE Product
-router.put("/:id", verifyTokenAndAdmin, async(req, res) => {
-    
+router.put("/:id", verifyTokenAndAdmin, async(req, res) => {  
     try{
         const updatedProduct = await Product.findByIdAndUpdate(
             req.params.id,
@@ -47,7 +45,7 @@ router.get("/find/:id", async (req, res) => {
     }
 })
 
-// FIND ALL Products (with sorting new products and same category)
+// FIND ALL Products (with sorting new prsoducts and same category)
 router.get("/", async (req, res) => {
     const newQuery = req.query.new;
     const catQuery = req.query.category;

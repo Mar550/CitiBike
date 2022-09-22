@@ -30,7 +30,7 @@ router.put("/:id", verifyTokenAndAut, async (req, res) => {
 
 
 // DELETE User
-router.delete("/:id", verifyTokenAndAut, async (req, res) => {
+router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   const checkedid = req.params.id;
   try {
     await User.findByIdAndDelete(checkedid.trim());
@@ -54,7 +54,7 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req,res)=>{
 })
 
 //FIND All Users 
-router.get("/all", verifyTokenAndAdmin, async (req, res) => {
+router.get("/all", verifyToken, async (req, res) => {
   const query = req.query.new;
   try{
     const users = query
@@ -71,7 +71,6 @@ router.get("/all", verifyTokenAndAdmin, async (req, res) => {
 router.get('/info', verifyTokenAndAdmin, async (req, res)=> {
   const date = new Date();
   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-
   try {
     const data = await User.aggregate([
       { $match: { createdAt: {$gte: lastYear }}},
