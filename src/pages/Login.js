@@ -27,7 +27,10 @@ const Login = (props) => {
         <div className="containerlogin">
           <div className="login-info-container">
             <h1 className="title"> login </h1>
+            <h3 className="subtitle"> AND ACCESS YOUR PERSONAL ACCOUNT </h3>
             <form className="inputs-container">
+                <div className="row">
+                <p> Username</p>
                 <input 
                 className="input" 
                 type="text" 
@@ -35,6 +38,9 @@ const Login = (props) => {
                 value={username}
                 placeholder="Username" 
                 onChange={(e) => setUsername(e.target.value)}/>
+                </div>
+                <div className="row">
+                <p> Password </p>
                 <input 
                 className="input" 
                 type="password" 
@@ -42,22 +48,14 @@ const Login = (props) => {
                 value={password}
                 placeholder="Password" 
                 onChange={(e) => setPassword(e.target.value)}/>
+                </div>
                 <div className="buttons">
-                <button className="btn" onClick={handleSubmit} > Login</button>
+                <button className="btn" onClick={handleSubmit} > Submit </button>
                 <button className="btn" onClick={() => props.setTrigger(false)}> Close </button> 
                 </div>
                 {error && <p>Something went wrong...</p>}
                 <p>Still not registered ? <Link to="/register" style={{ textDecoration: 'none' }}><span className="span"> Create an account </span> </Link></p>      
             </form>
-            <div className="subcontainer">
-                <p> or  </p>
-                <div className="icones">
-                  <BsFacebook/>
-                  <AiFillTwitterCircle/>
-                  <BsGithub/>
-                  <FaGooglePlus/>
-                </div>
-            </div>
           </div>
           </div>
       </Wrapper>
@@ -65,6 +63,18 @@ const Login = (props) => {
 }
 
 const Wrapper = styled.div`
+
+.subtitle{
+  color:#767676;
+  font-weight: BOLD;
+  font-size: 1.1rem;
+}
+
+.row{
+  display:flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
 
 .containerlogin{
   z-index: 1;
@@ -107,7 +117,6 @@ const Wrapper = styled.div`
   margin-right: auto;
   }
   .title {
-  margin-top: 2rem;
   text-transform: capitalize;
   font-size: 3.5rem;
   font-weight: 1300;
@@ -152,16 +161,21 @@ const Wrapper = styled.div`
   color: white;
   border: none;
   border-radius: 5px;
-  background-color: #3f51b5;
+  background-color: black;
   cursor: pointer;
   margin-top: 1.5rem;
+  &:hover{
+    background-color: white;
+    color:black;
+    border: 1px solid black;
+  }
   }
   .inputs-container p {
   margin: 0;
   }
-  .span {
-  color: #3f51b5;
-  font-weight: 800;
+  .l {
+  color: black;
+  font-weight: 900;
   cursor: pointer;
   }
   .buttons{

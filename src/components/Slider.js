@@ -69,6 +69,10 @@ const Slider = () => {
 
 const Wrapper = styled.div `
 
+.image{
+  border-radius: 10px;
+}
+
 .separator{
   margin-top: 1rem;
   color: grey;

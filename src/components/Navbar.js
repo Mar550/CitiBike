@@ -92,13 +92,15 @@ const Wrapper = styled.div`
     .container{
         height:60px;
         background-color: black;
-        color: white;
+        color: white;     
     }
     
     .wrapper{
         padding: 10px 20px;
         display: flex;
         justify-content: space-between;
+        margin-top: auto;
+        margin-bottom:auto;
     }
     
     .left{
@@ -121,7 +123,7 @@ const Wrapper = styled.div`
     
     .language{
         color: white;
-        font-size: 1rem;
+        font-size: 1.3rem;
         font-weight:bold;
         cursor:pointer;
         flex: 1;
@@ -142,8 +144,11 @@ const Wrapper = styled.div`
 
     .input-search{
        border-radius: 5px;
-        height: 25px;
+        padding: 4px;
+        height: 22px;
         width: 12rem;
+        border: none;
+        font-size: 14px;
     }
     
     .logo{
@@ -154,27 +159,43 @@ const Wrapper = styled.div`
         font-size: 14px;
         cursor: pointer;
         margin-left: 25px;
-        font-weight:bold;
+        font-weight:600;
         cursor: pointer;
         border: 2px solid white;
-        padding: 0.5rem;
+        padding: 0.5rem 1rem;
         border-radius: 15px;
         text-decoration: none;
         color: white;
+        &:hover{
+            background-color: white;
+            color:black;
+            font-weight:700;
+        }
+    }
+
+    .itemb{
+        margin-right: 1rem;
+        cursor:pointer;
+
     }
     
     .auth{
-        margin-right: 2rem;
+        margin-right: 4rem;
         display: flex;
         flex-direction: row;
     }
 
     .icon-search{
-        font-size: 1.8rem;
+        font-size: 2rem;
+        margin-right: 5px;
     }
 
     .icon-cart{
         color:white;
+        font-size: 1.8rem;
+        &:hover{
+            font-size:2rem;
+        }
     }
 
     .homelink{
