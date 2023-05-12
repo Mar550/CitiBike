@@ -108,6 +108,14 @@ const Wrapper = styled.div`
     margin-left: 12px;
     cursor:pointer;
     border: 1px solid black;
+    &:active{
+        width:23px;
+        height:23px;
+    }
+    &:focus{
+        width:23px;
+        height:23px;
+    }
 }
 
 .wrap{
