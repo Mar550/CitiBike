@@ -2,7 +2,7 @@
   "name": "myapp",
   "version": "0.1.0",
   "private": false,
-  "proxy": "https://citibike-api.vercel.app/",
+  "proxy": "https://citibike-api.vercel.app/api",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

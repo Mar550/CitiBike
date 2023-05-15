@@ -56,7 +56,7 @@ return (
                     </div>
                 </div>
                 { cart.products.length < 1 ?
-                 <h1 className="empty"> Your cart is currently empty </h1>   
+                 <h1 className="empty"> Your cart is empty </h1>   
                 :
                 <div className="leftb">
                 {cart.products.map(product =>(
@@ -124,7 +124,6 @@ return (
 const Wrapper = styled.div`
 .empty{
     margin-top: 10%;
-    border: 2px solid black;
     padding: 2rem;
     width: 60%;
     margin-left: auto;
