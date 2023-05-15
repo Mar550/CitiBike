@@ -55,6 +55,9 @@ return (
                         <Link to="/products"> <button className='topButton'> CONTINUE SHOPPING </button> </Link>
                     </div>
                 </div>
+                { cart.products.length < 1 ?
+                 <h1 className="empty"> Your cart is currently empty </h1>   
+                :
                 <div className="leftb">
                 {cart.products.map(product =>(
                         <div className="product"> 
@@ -77,11 +80,13 @@ return (
                                         <div className='number'> {product.quantity}  </div>
                                     <Remove className= "icon-quantity"  />
                                 </div>
-                                <div className='price'> {product.price} € </div> 
+                                <div className='price'> {product.price} £ </div> 
                             </div>
                         </div>))}
                 </div>
+                 }
                 </div>
+                
                 <div className='bottom'>
                     <div className='informations'>
                         
@@ -89,19 +94,19 @@ return (
                                 <h1 className='summaryTitle'> ORDER SUMMARY </h1>
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> Total </span>
-                                <span className='summaryPrice'> {cart.total} € </span>
+                                <span className='summaryPrice'> {cart.total} £ </span>
                                 </div>
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> Standard Shipping </span>
-                                <span className='summaryPrice'> {shipping} € </span>
+                                <span className='summaryPrice'> {shipping} £ </span>
                                 </div>
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> - Discount 10% </span>
-                                <span className='summaryPrice'> {Math.round((100*(cart.total*0.1))/100)} € </span>
+                                <span className='summaryPrice'> {Math.round((100*(cart.total*0.1))/100)} £ </span>
                                 </div>
                                 <div className='summaryItem'>  
                                 <span id="total" className='summaryText' type='total'> Total </span>
-                                <span id="total" className='summaryPrice'> {(cart.total) - (cart.total*0.1) + shipping} € </span>
+                                <span id="total" className='summaryPrice'> {(cart.total) - (cart.total*0.1) + shipping} £ </span>
                                 </div>                                
                                 <button className='checkout'> CHECKOUT NOW </button> 
                         </div>
@@ -117,7 +122,14 @@ return (
 }
 
 const Wrapper = styled.div`
-
+.empty{
+    margin-top: 10%;
+    border: 2px solid black;
+    padding: 2rem;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
 #buttons{
     display:flex;
     flex-direction: row;

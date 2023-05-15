@@ -7,6 +7,9 @@ import { FaGooglePlus } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from "../features/serverCalls";
 import { useDispatch, useSelector } from "react-redux";
+import { ToasContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Login = (props) => {
 
@@ -16,205 +19,125 @@ const Login = (props) => {
   const navigate = useNavigate();
   const { isFetching, error } = useSelector((state) => state.user);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    login(dispatch, { username, password });
-    window.location.replace('/');
+    await login(dispatch, { username, password })
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
   };
 
     return (props.trigger) ? ( 
       <Wrapper>
-        <div className="containerlogin">
-          <div className="login-info-container">
-            <h1 className="title"> login </h1>
-            <h3 className="subtitle"> AND ACCESS YOUR PERSONAL ACCOUNT </h3>
-            <form className="inputs-container">
-                <div className="row">
-                <p> Username</p>
-                <input 
+        <Container>
+            <Image/>
+            <Title className="title"> Login to your account </Title>
+            <Subtitle className="subtitle"> And access all our products..... </Subtitle>
+            <Form>
+                <div className="row" style={{ display:"flex", flexDirection:"column",gap:"0.3rem"}}>
+                <Span className="span"> Username</Span>
+                <Input 
                 className="input" 
                 type="text" 
                 name="username"
                 value={username}
-                placeholder="Username" 
                 onChange={(e) => setUsername(e.target.value)}/>
                 </div>
-                <div className="row">
-                <p> Password </p>
-                <input 
+                <div className="row" style={{ display:"flex", flexDirection:"column",gap:"0.3rem"}}>
+                <Span className="span"> Password </Span>
+                <Input 
                 className="input" 
                 type="password" 
                 name="password"
                 value={password}
-                placeholder="Password" 
                 onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <div className="buttons">
-                <button className="btn" onClick={handleSubmit} > Submit </button>
-                <button className="btn" onClick={() => props.setTrigger(false)}> Close </button> 
+                <div style={{display:"flex", flexDirection:"column"}}>
+                <Button className="btn" onClick={handleSubmit} > Submit </Button>
+                <Button className="btn" onClick={() => props.setTrigger(false)}> Close </Button> 
                 </div>
-                {error && <p>Something went wrong...</p>}
-                <p>Still not registered ? <Link to="/register" style={{ textDecoration: 'none' }}><span className="span"> Create an account </span> </Link></p>      
-            </form>
-          </div>
-          </div>
+                <Text>Still not registered ? <Link to="/register" style={{ textDecoration: 'none' }}><span className="span"> Create an account </span> </Link></Text>      
+            </Form>
+          </Container>
       </Wrapper>
     ) : "";
 }
 
 const Wrapper = styled.div`
 
-.subtitle{
-  color:#767676;
-  font-weight: BOLD;
-  font-size: 1.1rem;
-}
+z-index: 1;
+position:fixed;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+margin: auto;
+background-color: rgba(0,0,0,0.8);
+`
 
-.row{
-  display:flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
+const Container = styled.div`
+font-family:Helvetica Neue;
+position: relative;
+width: 30%;
+display: flex;
+flex-direction: column;
+padding: 3rem ;
+background-color: white;
+gap: 20px;
+border-radius: 5px;
+margin-top: 5%;
+margin-left:auto;
+margin-right: auto;
+`
 
-.containerlogin{
-  z-index: 1;
-  position:fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  background-color: rgba(0,0,0,0.8);
-  }
-  .icones{
-  display:flex;
-  gap: 10px;
-  font-size: 2rem;
-  margin-top: 10px;
-  cursor:pointer;
-  }
-  .login-info-container {
-  position: relative;
-  width: 30%;
+const Form = styled.form`
+margin-top: 1.5rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 1.5rem;
-  background-color: white;
-  gap: 20px;
-  border-radius: 5px;
-  margin-top: 1.5rem;
-  margin-left:auto;
-  margin-right: auto;
-  }
-  #image{
-  width: 65%;
-  
-  margin-left: auto;
-  margin-right: auto;
-  }
-  .title {
-  text-transform: capitalize;
-  font-size: 3.5rem;
-  font-weight: 1300;
-  letter-spacing: 1px;
-  color: black;
-  }
-  .login-info-container > p {
-  font-size: 1.5em;
-  margin-top: 1.8em;
-  }
-  .inputs-container {
-  margin-top: 2rem;
-  height: 60%;
-  width: 85%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  gap: 1.5rem;
-  }
-  .input, .btn {
-  width: 90%;
-  height: 2.8rem;
-  font-size: 1em;
-  }
-  .input {
-  padding-left: 20px;
-  border: 1px solid grey;
-  border-radius: 5px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  
-  box-sizing: border-box;
-  }
-  .input:hover {
-  border: 2px solid grey;
-  }
-  .btn {
-  width: 10rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  flex-direction:column;
+  gap: 1rem;
+`
+
+const Button = styled.button`
+  margin-top: 1rem;
   background-color: black;
-  cursor: pointer;
-  margin-top: 1.5rem;
-  &:hover{
-    background-color: white;
-    color:black;
-    border: 1px solid black;
-  }
-  }
-  .inputs-container p {
-  margin: 0;
-  }
-  .l {
-  color: black;
-  font-weight: 900;
-  cursor: pointer;
-  }
-  .buttons{
-  display:flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  }
-  @media screen and (max-width: 1000px) {
-  .login-container {
-  width: 70%;
-  margin-top: 3rem;
-  }
-  .login-info-container {
-  width: 60%;
-  
+  color: white;
+  border:none;
+  height: 3rem;
   border-radius: 5px;
-  }
-  .image-container {
-  display: none;
-  }
-  }
-  @media screen and (max-width: 650px) {
-  .login-container {
-  width: 50%;
-  }
-  }
-  @media screen and (max-width: 500px) {
-  .login-container {
-  height: 90%;
-  }
-  .social-login {
-  flex-direction: column;
-  align-items: center;
-  height: 30%;
-  }
-  .login-info-container > p {
-  margin: 0;
-  }
+  font-size: 1.2rem;
+  font-weight: bold;
+  &:hover{
+    cursor:pointer;
   }
 `
+
+const Span = styled.p`
+
+`
+
+const Input = styled.input`
+  height: 1.5rem;
+  padding: 5px ;
+`
+
+const Title = styled.h1`
+  text-align: center;
+  font-weight: 1200;
+`
+
+const Subtitle = styled.h3`
+text-align: center;
+font-size: 1rem;
+`
+
+const Image = styled.img`
+
+`
+const Text = styled.p`
+  text-align:center;
+  font-size: 1rem;
+`
+
 
 export default Login;

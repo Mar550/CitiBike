@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { logoutSuccess } from '../features/userRedux';
 import { selectUser } from '../features/userRedux';
 import { useSelector } from "react-redux";
+import { publicRequest } from '../request';
 
 const Navbar = () => {
         
@@ -18,13 +19,12 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const quantity = useSelector(state=>state.cart.quantity)
 
-    console.log(quantity);
     
     const [search, setSearch] = useState("");
     const [products, setProducts] = useState([]);
     
     const getProducts = async () => {
-        const res = await axios.get("/products/");
+        const res = await publicRequest.get("/products/");
         setProducts(res.data);
         console.log(res)
     };

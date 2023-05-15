@@ -26,10 +26,24 @@ const userSlice = createSlice({
       state.currentUser = null;
       localStorage.removeItem("token");
       state.loggedIn = false;
-    }
+    },
+    registerPending: (state, action) => {
+      state.isFetching = true
+    },
+    registerFulfilled: (state, action) => {
+      state.isFetching = false
+      state.loggedIn = true
+      state.currentUser = action.payload
+    },
+    registerRejected: (state, action) => {
+      state.isFetching = false
+      state.error = true
+      state.loggedIn = false
+      state.currentUser = null
+    },
   },
 });
 
-export const { loginStart, loginSuccess, loginFailure, logoutSuccess } = userSlice.actions;
+export const { loginStart, loginSuccess, loginFailure, registerPending, registerFulfilled, registerRejected, logoutSuccess } = userSlice.actions;
 export const selectUser = (state) => state.user.currentUser;
 export default userSlice.reducer;

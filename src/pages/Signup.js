@@ -1,55 +1,15 @@
-import React,{useState, useEffect} from 'react'
-import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
-import { publicRequest } from '../request';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import Announcement from '../components/Announcement'
-import { useDispatch, useSelector } from "react-redux";
-import { register } from '../features/serverCalls';
+import React from 'react'
 
-
-
-const Register = () => {
-
-  const [data, setData] = useState({
-    username:"",
-    email:"",
-    password:"",
-    passwordConfirm:"",
-  })
-
-  const [user, setUser] = useState({});
-
-  const dispatch = useDispatch();
-  
-  const handleChange = ({ currentTarget: input }) => {
-      setData({ ...data, [input.name]:input.value })
-  }
-
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    register(dispatch,data);
-  };
-
-  useEffect(()=> {
-    if(localStorage.getItem('user-info'))
-      {
-        navigate("/")
-      }
-  },[])
-
+const Signup = () => {
   return (
-    <Wrapper>
-        <Navbar/>
-        <Announcement/>
+    <>
+        <Wrapper>
         <Container>
+            <Logo> Citibike </Logo>
+            <Title className="title"> Register in our website </Title>
             <Form className="inputs-container" onSubmit={handleSubmit} >
-            <Title className="title"> Create an account </Title>
                 <Row>
-                    <Span className="span"> E-mail Address </Span>
+                    <Span className="span"> E-mail </Span>
                     <Input 
                     className="input" 
                     type="text" 
@@ -58,7 +18,7 @@ const Register = () => {
                     name="email" />
                 </Row>
                 <Row>
-                    <Span className="span"> Username </Span>
+                    <Span className="span"> Username</Span>
                     <Input 
                     className="input" 
                     type="text" 
@@ -67,7 +27,7 @@ const Register = () => {
                     name="username"/>
                 </Row>
                 <Row>
-                    <Span className="span"> Password </Span>
+                    <Span className="span"> Password</Span>
                     <Input 
                     className="input" 
                     type="password" 
@@ -76,45 +36,55 @@ const Register = () => {
                     name="password"/>
                 </Row>
                 <Row>
-                    <Span className="span"> Confirm password </Span>
+                    <Span className="span"> Confirm password</Span>
                     <Input 
                     className="input" 
                     type="password" 
-                    value={data.passwordConfirm} 
+                    value={data.password} 
                     onChange={handleChange}
-                    name="passwordConfirm"/>
+                    name="password"/>
                 </Row>
-                <Button className="btn" type="submit" onClick={handleSubmit}> Submit </Button>
-                <Text> Already registered ? <Link to="/login" style={{ textDecoration: 'none' }}><span className="span"> Sign In </span> </Link></Text>
+                <Button className="btn" type="submit" onClick={handleSubmit}> Create An Account </Button>
+                {error && <p>Something went wrong...</p>}
+                <Text> Already registered ? <Link to="/login" style={{ textDecoration: 'none' }}><span className="span"> Sign In here </span> </Link></Text>
             </Form>            
           </Container>
-          <div style={{height:"4rem"}}>  </div>
-          <Footer/>
       </Wrapper>
+    </>
   )
 }
 
 const Wrapper = styled.div`
+
+z-index: 1;
+position:fixed;
 width: 100%;
-height: auto;
-background-color: #eee;
+height: 100%;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+margin: auto;
+background-color: rgba(0,0,0,0.8);
 `
 
 const Container = styled.div`
+font-family:Helvetica Neue;
 position: relative;
 width: 30%;
 display: flex;
-margin-top: 3rem;
 flex-direction: column;
 padding: 3rem ;
 background-color: white;
 gap: 20px;
 border-radius: 5px;
+margin-top: 1.5rem;
 margin-left:auto;
 margin-right: auto;
 `
 
 const Form = styled.form`
+margin-top: 1.5rem;
   display: flex;
   flex-direction:column;
   gap: 1rem;
@@ -129,9 +99,6 @@ const Button = styled.button`
   border-radius: 5px;
   font-size: 1.2rem;
   font-weight: bold;
-  &:hover{
-    cursor:pointer;
-  }
 `
 
 const Span = styled.p`
@@ -139,14 +106,13 @@ const Span = styled.p`
 `
 
 const Input = styled.input`
-  height: 1.3rem;
+  height: 1.5rem;
   padding: 5px ;
 `
 
 const Title = styled.h1`
   text-align: center;
   font-weight: 1200;
-  margin-bottom: 2rem;
 `
 
 const Subtitle = styled.h3`
@@ -161,11 +127,6 @@ const Text = styled.p`
   text-align:center;
   font-size: 1rem;
 `
-const Row = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  fon-weight: 800;
-`
 
-export default Register;
+
+export default Signup
