@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useState, useContext} from 'react';
 import styled from 'styled-components';
 import { Navigation, Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
@@ -8,17 +8,20 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux/es/exports';
 import { useNavigate } from 'react-router-dom';
 import { logoutSuccess } from '../features/userRedux';
-import { selectUser } from '../features/userRedux';
 import { useSelector } from "react-redux";
 import { publicRequest } from '../request';
+import { logout } from '../features/userRedux';
+import { UserContext } from '../App';
 
 const Navbar = () => {
-        
+
+    const { authUser } = useContext(UserContext);  
+    console.log(authUser)
+    
     const [buttonPopup, setButtonPopup] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const quantity = useSelector(state=>state.cart.quantity)
-
     
     const [search, setSearch] = useState("");
     const [products, setProducts] = useState([]);
@@ -33,10 +36,10 @@ const Navbar = () => {
         getProducts();
     }, []);
 
-    const user = useSelector(selectUser);
-
-    const logout = () => {
-        dispatch(logoutSuccess())
+    
+    const handleLogout = (e) => {
+        e.preventDefault()
+        dispatch(logout())
         window.location.replace('/')
     };
 
@@ -62,17 +65,16 @@ const Navbar = () => {
              </Link> 
              </div>
              <div className="right"> 
-                {user ? 
+                { authUser ? 
                 <div className="auth">
-                    <div className="item"  onClick={logout}> LOGOUT </div>
+                    <div className="item"  onClick={handleLogout}> LOGOUT </div>
                 </div>
                 :
                 <div className="auth">
                     <div className="item" onClick={() => setButtonPopup(true)}> SIGN IN </div>
                     <Link to="/register" style={{ textDecoration: 'none' }}> <div className="item"> REGISTER </div> </Link>
                 </div>
-                }
-                               
+                }            
                 <Link to="/cart">
                 <div className="itemb">
                     <Badge  overlap="rectangular" badgeContent={quantity} color="primary">

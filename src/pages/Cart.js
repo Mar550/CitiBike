@@ -93,7 +93,7 @@ return (
                         <div className='summary'>
                                 <h1 className='summaryTitle'> ORDER SUMMARY </h1>
                                 <div className='summaryItem'>  
-                                <span className='summaryText' type='total'> Total </span>
+                                <span className='summaryText' type='total'> Items </span>
                                 <span className='summaryPrice'> {cart.total} £ </span>
                                 </div>
                                 <div className='summaryItem'>  
@@ -105,7 +105,7 @@ return (
                                 <span className='summaryPrice'> {Math.round((100*(cart.total*0.1))/100)} £ </span>
                                 </div>
                                 <div className='summaryItem'>  
-                                <span id="total" className='summaryText' type='total'> Total </span>
+                                <span id="total" className='summaryTotal' type='total'> Total </span>
                                 <span id="total" className='summaryPrice'> {(cart.total) - (cart.total*0.1) + shipping} £ </span>
                                 </div>                                
                                 <button className='checkout'> CHECKOUT NOW </button> 
@@ -244,6 +244,7 @@ h1{
 .amount{
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 .number{
     font-size: 1.5rem;
@@ -271,6 +272,10 @@ hr{
 }  
 .summaryTitle{
     font-weight: 200;
+}
+
+.summaryTotal{
+    font-weight: bold;
 }
 .summaryItem{
     margin: 30px 0px;

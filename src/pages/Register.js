@@ -6,17 +6,15 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Announcement from '../components/Announcement'
 import { useDispatch, useSelector } from "react-redux";
-import { register } from '../features/serverCalls';
+import { register } from '../features/userRedux';
 
-
-
+ 
 const Register = () => {
 
   const [data, setData] = useState({
-    username:"",
     email:"",
+    username:"",   
     password:"",
-    passwordConfirm:"",
   })
 
   const [user, setUser] = useState({});
@@ -29,9 +27,9 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    register(dispatch,data);
+    dispatch(register(data))
   };
 
   useEffect(()=> {
@@ -53,36 +51,30 @@ const Register = () => {
                     <Input 
                     className="input" 
                     type="text" 
+                    name="email" 
                     value={data.email} 
                     onChange={handleChange}
-                    name="email" />
+                    />
                 </Row>
                 <Row>
                     <Span className="span"> Username </Span>
                     <Input 
                     className="input" 
                     type="text" 
+                    name="username"
                     value={data.username}
                     onChange={handleChange}
-                    name="username"/>
+                    />
                 </Row>
                 <Row>
                     <Span className="span"> Password </Span>
                     <Input 
                     className="input" 
                     type="password" 
+                    name="password"
                     value={data.password} 
                     onChange={handleChange}
-                    name="password"/>
-                </Row>
-                <Row>
-                    <Span className="span"> Confirm password </Span>
-                    <Input 
-                    className="input" 
-                    type="password" 
-                    value={data.passwordConfirm} 
-                    onChange={handleChange}
-                    name="passwordConfirm"/>
+                    />
                 </Row>
                 <Button className="btn" type="submit" onClick={handleSubmit}> Submit </Button>
                 <Text> Already registered ? <Link to="/login" style={{ textDecoration: 'none' }}><span className="span"> Sign In </span> </Link></Text>

@@ -1,33 +1,40 @@
-import { loginFailure, loginStart, loginSuccess, registerPending, registerFulfilled, registerRejected } from "./userRedux";
-import { publicRequest } from "../request";
+import axios from 'axios';
 
 
-export const login = async (dispatch, user) => {
-  dispatch(loginStart());
-  try {
-    const res = await publicRequest.post("/auth/login", user);
-    dispatch(loginSuccess(res.data));
-  } catch (err) {
-    dispatch(loginFailure());
+//Register user
+const register = async (userData) => {
+    const response = await axios.post('https://citibike-api.vercel.app/api/auth/register/', userData)
+    if (response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data))
+        console.log(response.data)
+    }
+    return response.data
+}
+
+// Login user
+const login = async (userData) => {
+  const response = await axios.post('http://localhost:5000/api/auth/login', userData)
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data))
   }
-};
-
-export const register = async(dispatch, user) => {
-  dispatch(registerPending());
-  try {
-    const res = await publicRequest.post("/auth/register", user);
-    dispatch(registerFulfilled(res.data));
-  } catch (err) {
-    dispatch(registerRejected());
-  }
+  return response.data
 }
 
 
-export const logout = () => {
-  localStorage.removeItem("jsonwebtoken");
-};
+// Logout user
+const logout = () => {
+    localStorage.removeItem('user')
+    window.location.replace('/')
+}
+
+
+const serverCalls = {
+  register,
+  login,
+  logout
+}
+
+export default serverCalls;
 
 
 
-//export const logout
-// see login page

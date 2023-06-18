@@ -1,16 +1,11 @@
 import React,{useState, useEffect} from "react";
 import styled from "styled-components";
-import { BsFacebook } from 'react-icons/bs';
-import { AiFillTwitterCircle } from 'react-icons/ai';
-import { BsGithub } from 'react-icons/bs';
-import { FaGooglePlus } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from "../features/serverCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { ToasContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-
+import { loginStart, loginSuccess, loginFailure } from "../features/userRedux";
+import { publicRequest } from "../request";
 const Login = (props) => {
 
   const [username, setUsername] = useState("");
@@ -21,9 +16,9 @@ const Login = (props) => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    await login(dispatch, { username, password })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    await publicRequest.post("/auth/login", { username, password})
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
   };
 
     return (props.trigger) ? ( 
