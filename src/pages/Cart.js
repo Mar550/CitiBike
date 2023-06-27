@@ -17,23 +17,32 @@ import { AiTwotoneDelete } from 'react-icons/ai';
 const Cart = () => {
 
     const [shipping, setShipping] = useState(0)
-
-    useEffect(() => { 
-        if (cart.total > 0){
-            setShipping(9.95)
-        }
-    });
+    const [quantity, setQuantity] = useState(0)
         
 
     const cart = useSelector(state=> state.cart);
     const dispatch = useDispatch();
-    console.log(cart.products)
+    console.log(cart)
 
     const removeFromCart = () => {
         dispatch(removeProduct(cart));
     }
 
- 
+    const shippingFees = (total) => {
+        if (total > 0) {
+            return 9.95
+        } else {
+            return 0
+        }
+    }
+
+    const removeUnit = (item) => {
+        return item -=  - 1
+    }
+
+    const addUnit = (item) => {
+        return item +=  + 1
+    }
      
 return (
     <Wrapper>
@@ -90,25 +99,35 @@ return (
                 <div className='bottom'>
                     <div className='informations'>
                         
-                        <div className='summary'>
+                        <div className='column'>
+                                <div>
                                 <h1 className='summaryTitle'> ORDER SUMMARY </h1>
+                                </div>
+                                <div className='summary'>
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> Items </span>
                                 <span className='summaryPrice'> {cart.total} £ </span>
                                 </div>
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> Standard Shipping </span>
-                                <span className='summaryPrice'> {shipping} £ </span>
+                                <span className='summaryPrice'> {shippingFees(cart.total)} £ </span>
                                 </div>
+                                { cart.total > 0 ? 
                                 <div className='summaryItem'>  
                                 <span className='summaryText' type='total'> - Discount 10% </span>
                                 <span className='summaryPrice'> {Math.round((100*(cart.total*0.1))/100)} £ </span>
                                 </div>
+                                :
+                                <div></div>
+                                }
                                 <div className='summaryItem'>  
                                 <span id="total" className='summaryTotal' type='total'> Total </span>
                                 <span id="total" className='summaryPrice'> {(cart.total) - (cart.total*0.1) + shipping} £ </span>
-                                </div>                                
-                                <button className='checkout'> CHECKOUT NOW </button> 
+                                </div>  
+                                </div>
+                                <div>                              
+                                <button className='checkout'> CHECKOUT NOW </button>
+                                </div> 
                         </div>
                     </div>
                 </div>
@@ -123,7 +142,7 @@ return (
 
 const Wrapper = styled.div`
 .empty{
-    margin-top: 10%;
+    margin-top: 7%;
     padding: 2rem;
     width: 60%;
     margin-left: auto;
@@ -244,7 +263,7 @@ h1{
 .amount{
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 5px;   
 }
 .number{
     font-size: 1.5rem;
@@ -263,20 +282,24 @@ hr{
     height: 1px;
 }
 .summary{
+    
+}
+
+.column{
     position: sticky;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
     border: 0.5px solid lightgray;
     border-radius: 10px;
-    padding: 1.6rem;
-    height: 56vh;
-    top:0;
-}  
+    padding: 2rem 1.5rem 2rem 1.5rem;
+    height: 100%;
+    top:2rem;  
+}
 .summaryTitle{
     font-weight: 200;
 }
 
-.summaryTotal{
-    font-weight: bold;
-}
 .summaryItem{
     margin: 30px 0px;
     display: flex;
@@ -284,9 +307,7 @@ hr{
     font-weight: 600;
 
 }
-#total{
-    font-weight: bold;
-}
+
 .checkout{
     width: 100%;
     padding: 10px;

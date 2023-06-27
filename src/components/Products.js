@@ -4,7 +4,7 @@ import axios from 'axios';
 import { popularProducts } from '../data';
 import Product from './Product';
 import { publicRequest } from '../request';
-
+import { categories } from "../data";
 
 const Products = ({cat, filters, sort}) => {
   const [products, setProducts] = useState([]);
@@ -55,7 +55,7 @@ const Products = ({cat, filters, sort}) => {
 
   return (
     <Wrapper>
-        <h1 className="title"> Our popular accesories </h1>
+        <h1 className="title"> { cat ? cat.title : "Our popular products" } </h1>
         <div className="containerc">
           {cat ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
           : products.slice(0, 8).map((item) => <Product item={item} key={item.id} />)}
@@ -70,11 +70,9 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
-    padding: 20px; 
-    width: 21rem;
-    gap: 8rem;
-    margin-top: 2rem;
-    margin-left: 2rem;
+    gap: 6%;
+    padding: 3rem 1rem 10rem 1rem;
+
 }
 
 .title{

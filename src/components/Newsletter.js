@@ -19,7 +19,7 @@ const Newsletter = () => {
 
 const Wrapper = styled.div`
 .container{
-    margin-top: 4rem;
+    margin-top: 7rem;
     height: 60vh;
     background-color: #E8E8E8;
     display: flex;
