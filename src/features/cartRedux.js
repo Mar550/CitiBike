@@ -11,27 +11,16 @@ const cartSlice = createSlice({
     initialState,
     reducers:{
         addProduct: (state,action)=>{
-            state.quantity += 1; 
             state.products.push(action.payload)
+            state.quantity += 1
             state.total += action.payload.price * action.payload.quantity
         },
         removeProduct: (state,action)=>{
-            const productId = action.payload
-            state.products = state.products.filter((product)=> product._id !== productId)
-            let quantity = 0;
-            let total = 0;
-            state.products.forEach((product)=>{
-                quantity += product.quantity
-                total += product.total * product.price
-            })
-            state.quantity = quantity
-            state.total = total
+            let removedProduct = state.products.find( product => product._id === action.payload) 
+            state.products = state.products.filter((product)=> product._id !== action.payload)
+            state.quantity -= 1 
+            state.total -= (removedProduct.price * removedProduct.quantity)
 
-        },
-        calculateTotal: (state)=>{
-            let quantity = 0;
-            let total = 0;
-            
         },
         clearCart: (state)=>{
             state.products = [];

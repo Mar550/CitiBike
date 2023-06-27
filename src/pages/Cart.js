@@ -74,7 +74,6 @@ return (
                                 <img src={product.img} className="image"/> 
                                 <div className='details'>
                                     <h3 className='name'> {product.title} </h3>
-                                    <span className='id'> <b> ID: </b> {product._id}</span>  
                                     <div className="colordiv">
                                         <span> <b> Color: </b>  </span>
                                         <div id='color' style={{ backgroundColor: `${product.color}`, border:`1px solid black` }}></div>
@@ -186,7 +185,7 @@ const Wrapper = styled.div`
     border: 1px solid black;
 }
 .wrap{
-    padding: 20px;
+    padding: 2rem;
 }
 h1{
     font-weight: 600;
@@ -239,10 +238,11 @@ h1{
     margin-top: 0.5rem;
 }
 .details{
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 23px;
+    heigth: 80%;
 }
 #color{
     width: 20px;

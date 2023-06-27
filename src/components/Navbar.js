@@ -21,8 +21,8 @@ const Navbar = () => {
     const [buttonPopup, setButtonPopup] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const quantity = useSelector(state=>state.cart.quantity)
-    
+    const productsQuantity = useSelector(state=>state.cart.products.length)
+
     const [search, setSearch] = useState("");
     const [products, setProducts] = useState([]);
     
@@ -77,7 +77,7 @@ const Navbar = () => {
                 }            
                 <Link to="/cart">
                 <div className="itemb">
-                    <Badge  overlap="rectangular" badgeContent={quantity} color="primary">
+                    <Badge  overlap="rectangular" badgeContent={productsQuantity} color="primary">
                         <ShoppingCartOutlined className="icon-cart"/>
                     </Badge>
                 </div>
